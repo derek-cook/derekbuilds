@@ -1,6 +1,6 @@
 import { api } from "~/trpc/server";
-import { Button } from "./_components/ui/button";
-import { Input } from "./_components/ui/input";
+import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
