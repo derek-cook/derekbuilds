@@ -1,1 +1,3 @@
-export default async function Pool
+export default function Pool() {
+  return <h1>Pool</h1>;
+}

@@ -30,8 +30,8 @@ export default {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
       backgroundImage: {
-        noisyGradient: "url('/noisygradient.png')",
-        gradient: "url('/gradient.png')",
+        noisyGradientLight: "url('/noisygradient-light.png')",
+        noisyGradientDark: "url('/noisygradient-dark.png')",
       },
     },
   },

@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="en">
       {/* <div className="noise"></div> */}
       <body
-        className={`font-sans ${inter.variable} bg-noisyGradient bg-cover bg-no-repeat`}
+        className={`font-sans ${inter.variable} bg-noisyGradientLight dark:bg-noisyGradientDark bg-cover bg-no-repeat`}
       >
         <TRPCReactProvider cookies={cookies().toString()}>
           {children}
