@@ -12,9 +12,11 @@
     "start": "next start"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.29.1",
     "@prisma/client": "^5.1.1",
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-toast": "^1.1.5",
     "@t3-oss/env-nextjs": "^0.7.0",
     "@tanstack/react-query": "^4.32.6",
     "@trpc/client": "^10.37.1",
@@ -46,10 +48,16 @@
     "prettier-plugin-tailwindcss": "^0.5.1",
     "prisma": "^5.1.1",
     "tailwindcss": "^3.3.3",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "zod-prisma": "^0.5.4"
   },
   "ct3aMetadata": {
     "initVersion": "7.23.2"
   },
-  "packageManager": "npm@10.1.0"
+  "packageManager": "npm@10.1.0",
+  "overrides": {
+    "zod-prisma": {
+      "prisma": "$prisma"
+    }
+  }
 }

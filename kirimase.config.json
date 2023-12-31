@@ -1,0 +1,17 @@
+{
+  "hasSrc": true,
+  "packages": [
+    "trpc",
+    "prisma",
+    "shadcn-ui",
+    "clerk"
+  ],
+  "preferredPackageManager": "npm",
+  "t3": true,
+  "alias": "~",
+  "rootPath": "src/",
+  "orm": "prisma",
+  "componentLib": "shadcn-ui",
+  "driver": "sqlite",
+  "auth": "clerk"
+}
