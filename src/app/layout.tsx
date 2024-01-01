@@ -31,9 +31,7 @@ export default function RootLayout({
           <ClerkProvider>
             <div className="flex min-h-screen flex-col bg-noisyGradientLight bg-cover text-white dark:bg-noisyGradientDark">
               <Navbar />
-              <main className="mx-auto flex max-w-3xl flex-grow ">
-                {children}
-              </main>
+              {children}
               <footer className=""></footer>
             </div>
           </ClerkProvider>
