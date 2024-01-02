@@ -39,7 +39,7 @@ export default function Home() {
       "match_page_sections",
       {
         embedding,
-        match_threshold: 0.86,
+        match_threshold: 0.9,
         match_count: 10,
         min_content_length: 1,
       },
@@ -63,7 +63,7 @@ export default function Home() {
           .select()
           .single();
         match = res.data.content as string;
-        console.log({ res });
+        console.log("CREATED", match);
       } catch (e) {
         console.error(e);
       }
@@ -79,7 +79,7 @@ export default function Home() {
   }
 
   return (
-    <main className="mt-[-50px] flex max-w-3xl flex-grow flex-col items-center justify-center gap-6 px-3 md:mx-auto">
+    <div className="flex max-w-3xl flex-grow flex-col items-center justify-center gap-6 px-3 md:mx-auto">
       <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
         Dive in. <span className="text-[hsl(174,100%,84%)]"></span>
       </h1>
@@ -98,6 +98,6 @@ export default function Home() {
           Join
         </Button>
       </form>
-    </main>
+    </div>
   );
 }

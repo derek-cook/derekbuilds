@@ -6,7 +6,7 @@ export default async function Navbar() {
   const { session } = await getUserAuth();
 
   return (
-    <div className="bg-popover mb-2 px-4 md:p-0">
+    <div className="bg-popover w-full px-4 md:p-0">
       <nav className="mx-auto flex max-w-3xl items-center justify-end py-2 transition-all duration-300">
         {/* <h1 className="transition-hover cursor-pointer font-semibold hover:opacity-75">
             <Link href="/">Pools</Link>

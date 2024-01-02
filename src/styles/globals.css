@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  .noise:after {
+  .noise:before {
     animation: grain 8s steps(10) infinite;
     background-image: url("http://assets.iceable.com/img/noise-transparent.png");
     content: "";
@@ -13,6 +13,7 @@
     position: fixed;
     top: -110%;
     width: 300%;
+    z-index: -999;
   }
 
   @keyframes grain {
@@ -49,5 +50,15 @@
     100% {
       transform: translate(5%, 0);
     }
+  }
+}
+
+@layer components {
+  .radial-gradient {
+    background-image: radial-gradient(
+      circle,
+      rgba(167, 167, 167, 0.5) 40%,
+      rgba(255, 255, 255, 0) 70%
+    );
   }
 }
