@@ -19,6 +19,7 @@ export const env = createEnv({
       .default("development"),
     OPENAI_API_KEY: z.string(),
     CLERK_SECRET_KEY: z.string(),
+    ABLY_ROOT_API_KEY: z.string(),
   },
 
   /**
@@ -53,6 +54,7 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL,
     NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL:
       process.env.NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL,
+    ABLY_ROOT_API_KEY: process.env.ABLY_ROOT_API_KEY,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

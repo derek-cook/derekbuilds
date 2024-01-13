@@ -30,7 +30,7 @@ export default function Pool({ params }: { params: { topic: string } }) {
   };
 
   return (
-    <div className="flex flex-grow flex-col space-y-8 overflow-y-scroll p-4 pt-0">
+    <div className="flex flex-grow flex-col space-y-8 overflow-y-scroll p-4">
       <div className="flex items-center">
         <Button
           title="back"

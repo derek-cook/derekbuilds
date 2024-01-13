@@ -5,7 +5,6 @@ import { cookies } from "next/headers";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import { ClerkProvider } from "@clerk/nextjs";
-import Navbar from "~/components/Navbar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,17 +24,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/* <div className="noise"></div> */}
       <body className={`font-sans ${inter.variable}`}>
-        <TRPCReactProvider cookies={cookies().toString()}>
-          <ClerkProvider>
+        <ClerkProvider>
+          <TRPCReactProvider cookies={cookies().toString()}>
             <div className="flex min-h-screen flex-col bg-noisyGradientLight bg-cover text-white dark:bg-noisyGradientDark ">
-              <Navbar />
               {children}
               <footer className=""></footer>
             </div>
-          </ClerkProvider>
-        </TRPCReactProvider>
+          </TRPCReactProvider>
+        </ClerkProvider>
       </body>
     </html>
   );

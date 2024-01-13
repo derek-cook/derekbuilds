@@ -7,6 +7,7 @@ import { auth } from "@clerk/nextjs";
 import { openai } from "~/lib/openai";
 import { cookies } from "next/headers";
 import { createClient } from "~/lib/supabase/server";
+import Navbar from "~/components/Navbar";
 
 export default function Home() {
   // const hello = await api.post.hello.query({ text: "from tRPC" });
@@ -14,9 +15,9 @@ export default function Home() {
   async function joinTopic(formData: FormData) {
     "use server";
     const { userId, getToken } = auth();
-    if (!userId) {
-      throw new Error("Not signed in");
-    }
+    // if (!userId) {
+    //   throw new Error("Not signed in");
+    // }
 
     const token = (await getToken({ template: "supabase" }))!;
     const cookieStore = cookies();
@@ -79,25 +80,28 @@ export default function Home() {
   }
 
   return (
-    <div className="flex max-w-3xl flex-grow flex-col items-center justify-center gap-6 px-3 md:mx-auto">
-      <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-        Dive in. <span className="text-[hsl(174,100%,84%)]"></span>
-      </h1>
+    <>
+      <Navbar />
+      <div className="mt-[-60px] flex max-w-3xl flex-grow flex-col items-center justify-center gap-6 px-3 md:mx-auto">
+        <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
+          Dive in. <span className="text-[hsl(174,100%,84%)]"></span>
+        </h1>
 
-      <form
-        className="flex w-full max-w-sm items-center justify-between gap-2"
-        action={joinTopic}
-      >
-        <Input
-          className=" bg-stone-50 text-black"
-          name="topic"
-          type="text"
-          placeholder="Name"
-        />
-        <Button type="submit" title="join a topic">
-          Join
-        </Button>
-      </form>
-    </div>
+        <form
+          className="flex w-full max-w-sm items-center justify-between gap-2"
+          action={joinTopic}
+        >
+          <Input
+            className=" bg-stone-50 text-black"
+            name="topic"
+            type="text"
+            placeholder="Name"
+          />
+          <Button type="submit" title="join a topic">
+            Join
+          </Button>
+        </form>
+      </div>
+    </>
   );
 }

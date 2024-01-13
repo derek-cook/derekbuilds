@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { postRouter } from "~/server/api/routers/post";
-import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 
 /**
  * This is the primary router for your server.
@@ -9,7 +9,7 @@ import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
  */
 export const appRouter = createTRPCRouter({
   post: postRouter,
-  pool: publicProcedure
+  pool: protectedProcedure
     .input(
       z.object({
         topic: z.string().min(1),
