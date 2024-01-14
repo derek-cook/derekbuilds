@@ -1,8 +1,8 @@
 import React from "react";
 import { cn } from "~/lib/utils";
+import { motion } from "framer-motion";
 
-interface MessageBubbleProps
-  extends React.HTMLAttributes<HTMLParagraphElement> {
+interface MessageBubbleProps extends React.HTMLAttributes<HTMLDivElement> {
   isOwn: boolean;
 }
 
@@ -13,17 +13,24 @@ export const MessageBubble = ({
 }: MessageBubbleProps) => {
   // const circleStyle = "flex aspect-square w-fit max-w-xs items-center rounded-full bg-opacity-40 p-8 text-center"
   const style = isOwn
-    ? "ml-8 bg-blue-500 rounded-br-none self-end"
-    : "mr-8 bg-slate-500 rounded-bl-none self-start";
+    ? "ml-12 bg-blue-500 rounded-br-none self-end"
+    : "mr-12 bg-slate-500 rounded-bl-none self-start";
   return (
-    <p
+    <motion.div
+      initial={{
+        scale: 0,
+      }}
+      animate={{
+        scale: 1,
+      }}
+      transition={{ duration: 0.2 }}
       className={cn(
-        "flex w-fit max-w-xs items-center rounded-xl bg-opacity-50 p-4",
+        "mt-3 w-fit max-w-xs rounded-xl bg-opacity-50 px-4 py-2 text-sm",
         style,
       )}
       {...props}
     >
       {children}
-    </p>
+    </motion.div>
   );
 };
