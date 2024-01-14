@@ -6,7 +6,6 @@ import { env } from "~/env.mjs";
 const client = new Ably.Realtime(env.ABLY_ROOT_API_KEY);
 
 export const GET = async (_req: NextRequest) => {
-  console.log("GET /api/ably");
   const user = await currentUser();
 
   const tokenRequest = await client.auth.createTokenRequest({
