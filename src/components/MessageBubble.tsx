@@ -6,11 +6,7 @@ interface MessageBubbleProps extends React.HTMLAttributes<HTMLDivElement> {
   isOwn: boolean;
 }
 
-export const MessageBubble = ({
-  isOwn,
-  children,
-  ...props
-}: MessageBubbleProps) => {
+export const MessageBubble = ({ isOwn, children }: MessageBubbleProps) => {
   // const circleStyle = "flex aspect-square w-fit max-w-xs items-center rounded-full bg-opacity-40 p-8 text-center"
   const style = isOwn
     ? "ml-12 bg-zinc-950 rounded-br-none self-end"
@@ -28,7 +24,6 @@ export const MessageBubble = ({
         "mt-3 w-fit max-w-xs rounded-xl bg-opacity-50 px-4 py-2 text-sm",
         style,
       )}
-      {...props}
     >
       {children}
     </motion.div>
