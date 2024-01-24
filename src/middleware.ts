@@ -7,7 +7,7 @@ import { type NextMiddleware } from "next/server";
 export default async function middleware(...args: Parameters<NextMiddleware>) {
   return await authMiddleware({
     // publicRoutes: ["/"],
-    debug: true,
+    // debug: true,
   })(...args);
 }
 
