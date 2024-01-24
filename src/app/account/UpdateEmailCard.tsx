@@ -10,7 +10,7 @@ export default function UpdateEmailCard({ email }: { email: string }) {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
-  const handleSubmit = async (event: React.SyntheticEvent) => {
+  const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
     const target = event.target as HTMLFormElement;
     const form = new FormData(target);
