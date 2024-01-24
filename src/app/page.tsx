@@ -27,25 +27,25 @@ export default function Home() {
 
     // find the most similar topic or create one
     const {
-      data: [{ embedding }],
+      data: [embeddingObj],
       usage: { total_tokens },
     } = await openai.embeddings.create({
       input: topic,
       model: "text-embedding-ada-002",
-      user: userId,
+      user: userId!,
     });
 
+    const embedding = embeddingObj?.embedding;
+
     // check similarity to existing topics (documents/pagesections/embedded topics )
-    const { error: matchError, data } = await supabaseClient.rpc(
-      "match_page_sections",
-      {
-        embedding,
-        match_threshold: 0.9,
-        match_count: 10,
-        min_content_length: 1,
-      },
-    );
-    const documents = data as Record<string, unknown>[]; // TODO: type out document object
+    const res = await supabaseClient.rpc("match_page_sections", {
+      embedding,
+      match_threshold: 0.9,
+      match_count: 10,
+      min_content_length: 1,
+    });
+    const { error: matchError } = res;
+    const documents = res.data as Record<string, unknown>[]; // TODO: type out document object
 
     console.log({ matchError, documents, embedding: embedding?.length });
 
