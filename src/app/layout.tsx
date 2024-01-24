@@ -29,8 +29,10 @@ export default function RootLayout({
         <ClerkProvider>
           <TRPCReactProvider cookies={cookies().toString()}>
             <ClientProviders>
-              <div className="flex h-screen flex-col bg-noisyGradientLight bg-cover text-white dark:bg-noisyGradientDark ">
-                {children}
+              <div className="bg-noisyGradientLight bg-cover text-white dark:bg-noisyGradientDark ">
+                <div className="mx-auto flex h-screen flex-col justify-items-center">
+                  {children}
+                </div>
                 <footer className=""></footer>
               </div>
             </ClientProviders>

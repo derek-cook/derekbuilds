@@ -2,11 +2,11 @@ import { getUserAuth } from "~/lib/auth/utils";
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
 
-export default async function Navbar() {
-  const { session } = await getUserAuth();
+export default function Navbar() {
+  const { session } = getUserAuth();
 
   return (
-    <nav className="flex w-full max-w-3xl items-center justify-end p-2 transition-all duration-300 md:p-0">
+    <nav className="flex max-w-7xl items-center justify-end p-2 transition-all duration-300">
       {/* <h1 className="transition-hover cursor-pointer font-semibold hover:opacity-75">
             <Link href="/">Pools</Link>
           </h1> */}

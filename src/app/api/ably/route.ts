@@ -3,7 +3,7 @@ import Ably from "ably/promises";
 import { NextResponse, type NextRequest } from "next/server";
 import { env } from "~/env.mjs";
 
-const client = new Ably.Realtime(env.ABLY_ROOT_API_KEY);
+const client = new Ably.Rest(env.ABLY_ROOT_API_KEY);
 
 export const GET = async (_req: NextRequest) => {
   const user = await currentUser();
