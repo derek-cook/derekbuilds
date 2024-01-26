@@ -5,7 +5,16 @@ import { cookies } from "next/headers";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import { ClerkProvider } from "@clerk/nextjs";
-import { ClientProviders } from "~/components/ClientProviders";
+import { ThemeProvider } from "~/components/ThemeProvider";
+import dynamic from "next/dynamic";
+import { cn } from "~/lib/utils";
+
+const DynamicAblyProvider = dynamic(
+  () => import("~/components/realtime/ClientProviders"),
+  {
+    ssr: false,
+  },
+);
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,19 +34,27 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>
-        <ClerkProvider>
-          <TRPCReactProvider cookies={cookies().toString()}>
-            <ClientProviders>
-              <div className="bg-noisyGradientLight bg-cover text-white dark:bg-noisyGradientDark ">
-                <div className="mx-auto flex h-screen flex-col justify-items-center">
-                  {children}
-                </div>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          inter.variable,
+        )}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ClerkProvider>
+            <TRPCReactProvider cookies={cookies().toString()}>
+              <DynamicAblyProvider>
+                <main className="flex min-h-screen flex-col">{children}</main>
                 <footer className=""></footer>
-              </div>
-            </ClientProviders>
-          </TRPCReactProvider>
-        </ClerkProvider>
+              </DynamicAblyProvider>
+            </TRPCReactProvider>
+          </ClerkProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
