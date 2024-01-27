@@ -12,6 +12,9 @@ export default {
       },
     },
     extend: {
+      aspectRatio: {
+        "2/1": "2 / 1",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

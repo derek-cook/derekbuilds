@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { api } from "~/trpc/server";
 import { Button } from "~/components/ui/Button";
 import { Input } from "~/components/ui/Input";
 import { redirect } from "next/navigation";
@@ -8,16 +6,14 @@ import { openai } from "~/lib/openai";
 import { cookies } from "next/headers";
 import { createClient } from "~/lib/supabase/server";
 import Navbar from "~/components/Navbar";
+import { generateUsername } from "unique-username-generator";
 
 export default function Pools() {
-  // const hello = await api.post.hello.query({ text: "from tRPC" });
-
   async function joinTopic(formData: FormData) {
     "use server";
-    const { userId, getToken } = auth();
-    // if (!userId) {
-    //   throw new Error("Not signed in");
-    // }
+    const { getToken } = auth();
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    const userId = auth().userId ?? generateUsername();
 
     const token = (await getToken({ template: "supabase" }))!;
     const cookieStore = cookies();
@@ -32,7 +28,7 @@ export default function Pools() {
     } = await openai.embeddings.create({
       input: topic,
       model: "text-embedding-ada-002",
-      user: userId!,
+      user: userId,
     });
 
     const embedding = embeddingObj?.embedding;
@@ -44,10 +40,7 @@ export default function Pools() {
       match_count: 10,
       min_content_length: 1,
     });
-    const { error: matchError } = res;
     const documents = res.data as Record<string, unknown>[]; // TODO: type out document object
-
-    console.log({ matchError, documents, embedding: embedding?.length });
 
     let match = topic;
     // if no matches, insert the embedding
@@ -62,8 +55,8 @@ export default function Pools() {
             slug: "",
           })
           .select()
-          .single();
-        match = res.data.content as string;
+          .single<{ content: string }>();
+        match = res.data!.content;
       } catch (e) {
         console.error(e);
       }
