@@ -24,6 +24,7 @@
     --input: 240 5.9% 90%;
     --ring: 240 5.9% 10%;
     --radius: 0.5rem;
+    --noisy-gradient-url: url("/noisygradient-light.png");
   }
 
   :root[class~="dark"] {
@@ -46,11 +47,13 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
+    --noisy-gradient-url: url("/noisygradient-dark.png");
   }
 }
 
 * {
   border-color: hsl(var(--border));
+  box-sizing: border-box;
 }
 
 .noise:before {
@@ -109,5 +112,14 @@
       rgba(167, 167, 167, 0.5) 40%,
       rgba(255, 255, 255, 0) 70%
     );
+  }
+
+  .image-corner {
+    background-image: url("/pool_2.png"), url("/pool_1.png");
+    background-position:
+      bottom -120px left 0,
+      top -110px right 0;
+    background-repeat: no-repeat;
+    background-size: 200px;
   }
 }
