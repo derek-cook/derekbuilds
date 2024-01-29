@@ -96,7 +96,7 @@ export default function Pools() {
         </form>
         <div className="">
           <Popover>
-            <PopoverTrigger>
+            <PopoverTrigger asChild>
               <Button size="sm" variant={"link"} className="underline">
                 How does this work?
               </Button>

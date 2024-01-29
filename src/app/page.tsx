@@ -16,6 +16,12 @@ import { BentoContainer, BentoItem } from "~/components/Bento";
 import { DemoAppA, DemoAppB } from "~/lib/airwave/DemoApp";
 import DemoChat from "~/lib/airwave/DemoChat";
 import Link from "next/link";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "~/components/ui/popover";
+import { Button } from "~/components/ui/Button";
 
 const placeholders = [
   "What was your most recent role?",
@@ -92,10 +98,12 @@ export default function Home() {
 
         <BentoItem size="square">
           <Card className="h-full">
-            <div className="absolute max-w-40">
-              <CardHeader className="">
+            <div className="absolute z-50 max-w-44">
+              <CardHeader className="h-full">
                 <CardTitle>Airwave</CardTitle>
-                <CardDescription className="text-xs">{`Try moving your pointer here`}</CardDescription>
+                <CardDescription className="text-xs">
+                  {`Try moving your pointer here`}
+                </CardDescription>
               </CardHeader>
             </div>
             <DemoAppA>
@@ -105,6 +113,26 @@ export default function Home() {
         </BentoItem>
         <BentoItem size="square">
           <Card className="h-full">
+            <div className="absolute max-w-40">
+              <CardHeader className="">
+                <CardDescription className="text-xs">{`(what others see)`}</CardDescription>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant={"link"}
+                      className="top-4 self-start p-0 text-xs text-muted-foreground underline"
+                    >
+                      More details
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="max-w-xs space-y-3 p-4 text-sm">
+                    <p>
+                      {`Inspired by Figma's cursor chat. This uses a custom websocket client on the frontend. Connections are managed on Cloudflare Durable Objects`}
+                    </p>
+                  </PopoverContent>
+                </Popover>
+              </CardHeader>
+            </div>
             <DemoAppB>
               <DemoChat />
             </DemoAppB>
