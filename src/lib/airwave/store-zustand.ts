@@ -1,11 +1,12 @@
+/* eslint-disable */
 import zCreate, { StateCreator, Mutate, StoreApi } from "zustand";
 import type { ChannelClient } from "./client";
 
 export type Middleware<S> = (
   config: StateCreator<S>,
   options: {
-    client: ChannelClient<S>;
-  }
+    client: ChannelClient;
+  },
 ) => StateCreator<S>;
 
 // declare module "zustand" {
@@ -27,8 +28,8 @@ type Cast<T, U> = T extends U ? T : U;
 type ChannelMiddlewareImpl = <T extends unknown>(
   config: PopArgument<StateCreator<T, [], []>>,
   Options: {
-    client: ChannelClient<T>;
-  }
+    client: ChannelClient;
+  },
 ) => PopArgument<StateCreator<T, [], []>>;
 
 const joinListener = (e: MessageEvent, set: any) => {
@@ -94,7 +95,7 @@ const channelMiddleware: ChannelMiddlewareImpl = (config, { client }) => {
   return (set, get, _api) => {
     type T = ReturnType<typeof config>;
     type A = {
-      client: ChannelClient<T>;
+      client: ChannelClient;
     };
 
     const api = _api as Mutate<StoreApi<T>, [["config", A]]>;
@@ -112,7 +113,7 @@ const channelMiddleware: ChannelMiddlewareImpl = (config, { client }) => {
         });
       },
       get,
-      api
+      api,
     );
   };
 };
