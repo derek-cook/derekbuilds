@@ -6,15 +6,7 @@ import { cookies } from "next/headers";
 import { TRPCReactProvider } from "~/trpc/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "~/components/ThemeProvider";
-import dynamic from "next/dynamic";
 import { cn } from "~/lib/utils";
-
-const DynamicAblyProvider = dynamic(
-  () => import("~/components/realtime/ClientProviders"),
-  {
-    ssr: false,
-  },
-);
 
 const inter = Inter({
   subsets: ["latin"],
@@ -48,10 +40,8 @@ export default function RootLayout({
         >
           <ClerkProvider>
             <TRPCReactProvider cookies={cookies().toString()}>
-              <DynamicAblyProvider>
-                <main className="flex min-h-screen flex-col">{children}</main>
-                <footer className=""></footer>
-              </DynamicAblyProvider>
+              <main className="flex min-h-screen flex-col">{children}</main>
+              <footer className=""></footer>
             </TRPCReactProvider>
           </ClerkProvider>
         </ThemeProvider>

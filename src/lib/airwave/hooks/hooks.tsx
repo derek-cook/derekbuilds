@@ -1,3 +1,4 @@
+"use client";
 import { type Channel, type ChannelClient } from "../client";
 import type { MemberData } from "../client";
 import React, {
