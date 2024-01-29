@@ -12,10 +12,9 @@
 
 export const Navbar = () => {
   return (
-    <div className="">
-      <div className="m-auto flex max-w-5xl items-center justify-between px-4 py-3 md:py-8">
-        <span className="text-xs font-medium">Derek Cook</span>
-        {/* <NavigationMenu>
+    <div className="flex w-full max-w-5xl items-center justify-between justify-self-start px-4 py-6 md:py-8">
+      <span className="text-sm font-medium">Derek Cook</span>
+      {/* <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
               <Link href="/" legacyBehavior passHref>
@@ -31,7 +30,6 @@ export const Navbar = () => {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu> */}
-      </div>
     </div>
   );
 };

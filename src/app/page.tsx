@@ -15,6 +15,7 @@ import PoolsCard from "~/components/PoolsCard";
 import { BentoContainer, BentoItem } from "~/components/Bento";
 import { DemoAppA, DemoAppB } from "~/lib/airwave/DemoApp";
 import DemoChat from "~/lib/airwave/DemoChat";
+import Link from "next/link";
 
 const placeholders = [
   "What was your most recent role?",
@@ -106,6 +107,20 @@ export default function Home() {
             </DemoAppB>
           </Card>
         </BentoItem>
+
+        <div className="col-span-full">
+          <CardHeader>
+            <CardTitle className="">Links</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col items-start gap-3 text-sm text-muted-foreground">
+            <Link href="https://www.linkedin.com/in/derekcook33/">
+              linkedin
+            </Link>
+            <Link href="https://github.com/derek-cook">github</Link>
+            <Link href="https://read.cv/derekcook">read.cv</Link>
+            <Link href="https://twitter.com/derek_cookie">twitter</Link>
+          </CardContent>
+        </div>
       </BentoContainer>
     </div>
   );
