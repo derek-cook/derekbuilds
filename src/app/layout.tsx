@@ -15,8 +15,8 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Pools",
-  description: "Pools is a realtime chat app built with Next.js",
+  title: "Derek Builds AI",
+  description: "What I'm working on",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
