@@ -11,10 +11,10 @@ import {
 } from "~/components/ui/Card";
 import { Input } from "~/components/ui/Input";
 import { useEffect, useRef } from "react";
-import { Button } from "~/components/ui/Button";
-import Link from "next/link";
 import PoolsCard from "~/components/PoolsCard";
 import { BentoContainer, BentoItem } from "~/components/Bento";
+import { DemoAppA, DemoAppB } from "~/lib/airwave/DemoApp";
+import DemoChat from "~/lib/airwave/DemoChat";
 
 const placeholders = [
   "What was your most recent role?",
@@ -87,54 +87,23 @@ export default function Home() {
         <BentoItem size="md">
           <PoolsCard />
         </BentoItem>
+
         <BentoItem size="square">
           <Card className="h-full">
-            <CardHeader>
-              <CardTitle>Hover Chat</CardTitle>
+            <CardHeader className="absolute max-w-40">
+              <CardTitle>Airwave</CardTitle>
+              <CardDescription className="text-xs">{`Try moving your pointer here`}</CardDescription>
             </CardHeader>
-            <CardFooter>
-              <Button variant={"link"}>Github</Button>
-            </CardFooter>
+            <DemoAppA>
+              <DemoChat />
+            </DemoAppA>
           </Card>
         </BentoItem>
         <BentoItem size="square">
           <Card className="h-full">
-            <CardHeader>
-              <CardTitle>Hover Chat</CardTitle>
-            </CardHeader>
-            <CardFooter>
-              <Button variant={"link"}>Github</Button>
-            </CardFooter>
-          </Card>
-        </BentoItem>
-        <BentoItem size="square">
-          <Card className="h-full">
-            <CardHeader>
-              <CardTitle>Hover Chat</CardTitle>
-            </CardHeader>
-            <CardFooter>
-              <Button variant={"link"}>Github</Button>
-            </CardFooter>
-          </Card>
-        </BentoItem>
-        <BentoItem size="square">
-          <Card className="h-full">
-            <CardHeader>
-              <CardTitle>Hover Chat</CardTitle>
-            </CardHeader>
-            <CardFooter>
-              <Button variant={"link"}>Github</Button>
-            </CardFooter>
-          </Card>
-        </BentoItem>
-        <BentoItem size="square">
-          <Card className="h-full">
-            <CardHeader>
-              <CardTitle>Hover Chat</CardTitle>
-            </CardHeader>
-            <CardFooter>
-              <Button variant={"link"}>Github</Button>
-            </CardFooter>
+            <DemoAppB>
+              <DemoChat />
+            </DemoAppB>
           </Card>
         </BentoItem>
       </BentoContainer>

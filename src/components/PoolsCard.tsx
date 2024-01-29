@@ -8,8 +8,6 @@ import {
   CardContent,
   CardFooter,
 } from "./ui/Card";
-import { Input } from "./ui/Input";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
 const PoolsCard = () => {
   return (
@@ -33,6 +31,3 @@ const PoolsCard = () => {
 };
 
 export default PoolsCard;
-// Users joining 'React
-//           Discussion', 'React Frontend', or 'React Dev' will be in the same
-//           conversation.

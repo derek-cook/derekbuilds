@@ -7,6 +7,11 @@ import { cookies } from "next/headers";
 import { createClient } from "~/lib/supabase/server";
 import Navbar from "~/components/Navbar";
 import { generateUsername } from "unique-username-generator";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "~/components/ui/popover";
 
 export default function Pools() {
   async function joinTopic(formData: FormData) {
@@ -89,6 +94,29 @@ export default function Pools() {
             Join
           </Button>
         </form>
+        <div className="">
+          <Popover>
+            <PopoverTrigger>
+              <Button size="sm" variant={"link"} className="underline">
+                How does this work?
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="max-w-xs space-y-3 p-4 text-sm">
+              <p>
+                {`Try joining a a topic on 'footwear', or 'sneakers'. You'll
+                  notice a similar topic, 'shoes' was already created and will
+                  be joined automatically.`}
+              </p>
+              <p>
+                {`Topic similarity is determined by comparing the embedding of a
+                  topic in a vector database using dot-product comparison. If
+                  the result is greater than the threshold, the most similar
+                  topic is joined instead. Otherwise, a new conversation is
+                  created.`}
+              </p>
+            </PopoverContent>
+          </Popover>
+        </div>
       </div>
     </>
   );

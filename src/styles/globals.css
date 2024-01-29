@@ -122,4 +122,17 @@
     background-repeat: no-repeat;
     background-size: 200px;
   }
+
+  /* copied from Airwave/Sage */
+  .sage-cursor-default {
+    cursor: url("/cursor-default.png"), auto;
+  }
+
+  .sage-other-cursor {
+    background-image: url("/cursor-default.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 16px;
+    width: 16px;
+  }
 }

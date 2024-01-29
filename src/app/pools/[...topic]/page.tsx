@@ -51,7 +51,7 @@ export default function Pool({ params }: { params: { topic: string } }) {
     if (value.length === 0) return;
     // send message to realtime
     await channel.publish("MESSAGE", {
-      sentBy: userId,
+      sentBy: userId ?? "Anonymous",
       value,
     });
   };
