@@ -67,7 +67,7 @@ export default function Home() {
         <BentoItem size="md">
           <Card className="flex h-full min-h-48 flex-col justify-between">
             <CardHeader className="pb-2">
-              <CardTitle className="text-xs">Ask about my experience</CardTitle>
+              <CardTitle className="">Ask about my experience</CardTitle>
             </CardHeader>
             <CardContent className="overflow-auto py-2">
               {completion}
@@ -85,16 +85,19 @@ export default function Home() {
             </CardFooter>
           </Card>
         </BentoItem>
+
         <BentoItem size="md">
           <PoolsCard />
         </BentoItem>
 
         <BentoItem size="square">
           <Card className="h-full">
-            <CardHeader className="absolute max-w-40">
-              <CardTitle>Airwave</CardTitle>
-              <CardDescription className="text-xs">{`Try moving your pointer here`}</CardDescription>
-            </CardHeader>
+            <div className="absolute max-w-40">
+              <CardHeader className="">
+                <CardTitle>Airwave</CardTitle>
+                <CardDescription className="text-xs">{`Try moving your pointer here`}</CardDescription>
+              </CardHeader>
+            </div>
             <DemoAppA>
               <DemoChat disabled />
             </DemoAppA>

@@ -20,7 +20,11 @@ const PoolsCard = () => {
         {`Similar topics are deduplicated. For example, entering 'React Discussion' or 'React Frontend' will join the same conversation.`}
       </CardContent>
       <CardFooter className="flex justify-end gap-2">
-        <Button variant={"link"} size={"sm"} className="text-xs">
+        <Button
+          variant={"link"}
+          size={"sm"}
+          className="bg-noisyGradient bg-cover text-xs"
+        >
           <Link target="_blank" href="/pools">
             Try it out
           </Link>
