@@ -11,11 +11,12 @@ const fetchUser = (demoUser: string): Promise<MemberData> =>
 
 type DemoChatProps = {
   username?: string;
+  disabled?: boolean;
 };
 
 type DemoState = Record<string, [number, number]>;
 
-const DemoChat: React.FC<DemoChatProps> = ({ username }) => {
+const DemoChat: React.FC<DemoChatProps> = ({ username, disabled = false }) => {
   const [location, setLocation] = useState<DemoState>({});
   const boxRef = useRef<HTMLDivElement>(null);
   // const user = useQuery({
@@ -56,13 +57,14 @@ const DemoChat: React.FC<DemoChatProps> = ({ username }) => {
         ref={boxRef}
         onPointerMove={handlePointerMove}
       >
-        {others.map((m) => (
-          <Cursor
-            key={m.clientId}
-            label={m.clientId}
-            location={location[m.clientId]}
-          />
-        ))}
+        {!disabled &&
+          others.map((m) => (
+            <Cursor
+              key={m.clientId}
+              label={`User: ${m.clientId}`}
+              location={location[m.clientId]}
+            />
+          ))}
       </div>
     </>
   );

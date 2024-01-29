@@ -95,7 +95,7 @@ export default function Home() {
               <CardDescription className="text-xs">{`Try moving your pointer here`}</CardDescription>
             </CardHeader>
             <DemoAppA>
-              <DemoChat />
+              <DemoChat disabled />
             </DemoAppA>
           </Card>
         </BentoItem>
