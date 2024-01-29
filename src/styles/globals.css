@@ -123,7 +123,6 @@
     background-size: 200px;
   }
 
-  /* copied from Airwave/Sage */
   .sage-cursor-default {
     cursor: url("/cursor-default.png"), auto;
   }

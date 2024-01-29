@@ -50,23 +50,21 @@ const DemoChat: React.FC<DemoChatProps> = ({ username, disabled = false }) => {
   };
 
   return (
-    <>
-      <div
-        id="DemoChat"
-        className="relative h-full touch-none"
-        ref={boxRef}
-        onPointerMove={handlePointerMove}
-      >
-        {!disabled &&
-          others.map((m) => (
-            <Cursor
-              key={m.clientId}
-              label={`User: ${m.clientId}`}
-              location={location[m.clientId]}
-            />
-          ))}
-      </div>
-    </>
+    <div
+      id="DemoChat"
+      className="relative h-full touch-none"
+      ref={boxRef}
+      onPointerMove={handlePointerMove}
+    >
+      {!disabled &&
+        others.map((m) => (
+          <Cursor
+            key={m.clientId}
+            label={`User: ${m.clientId}`}
+            location={location[m.clientId]}
+          />
+        ))}
+    </div>
   );
 };
 

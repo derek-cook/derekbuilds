@@ -54,6 +54,7 @@ export class Channel {
   }
 
   connect(channelName: string, opts: ChannelOptions = {}) {
+    if (typeof document === "undefined") return;
     this.clientId = opts.memberData?.clientId ?? this.clientId;
     const wsProtocol =
       document.location.protocol === "http:" ? "ws://" : "wss://";
@@ -82,7 +83,6 @@ export class Channel {
 
     const messageListener = (e: MessageEvent) => {
       const data = JSON.parse(e.data as string) as ChannelEvent;
-      console.log({ data });
       if (data.event === "_join") {
         this.memberMap.set(data.clientId, data.data as MemberData);
         this.publishMembers();

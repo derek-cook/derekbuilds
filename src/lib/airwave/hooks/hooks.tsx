@@ -42,12 +42,13 @@ export function useChannel(channelId: string): Channel {
 
 export function useMembers(channelId: string): MemberData[] {
   const channel = useChannel(channelId);
+  const snapshot = useMemo(() => channel.members, [channel]);
   const members = useSyncExternalStore(
     channel.subscribeToMembers,
     () => {
       return channel.members;
     },
-    () => [""],
+    () => snapshot,
   );
 
   const memberData: MemberData[] = useMemo(
