@@ -117,8 +117,8 @@
   .image-corner {
     background-image: url("/pool_2.png"), url("/pool_1.png");
     background-position:
-      bottom -120px left 0,
-      top -110px right 0;
+      bottom -130px left -50px,
+      top -120px right 0;
     background-repeat: no-repeat;
     background-size: 200px;
   }
