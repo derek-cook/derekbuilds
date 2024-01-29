@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
+          "h-screen bg-background font-sans antialiased",
           inter.variable,
         )}
       >
@@ -40,7 +40,7 @@ export default function RootLayout({
         >
           <ClerkProvider>
             <TRPCReactProvider cookies={cookies().toString()}>
-              <main className="flex min-h-screen flex-col">{children}</main>
+              <main className="flex h-dvh flex-col">{children}</main>
               <footer className=""></footer>
             </TRPCReactProvider>
           </ClerkProvider>

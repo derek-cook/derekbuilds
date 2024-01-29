@@ -10,10 +10,8 @@ const DynamicAblyProvider = dynamic(
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <DynamicAblyProvider>
-      <div className="bg-noisyGradient bg-cover">
-        <div className="mx-auto flex h-screen flex-col justify-items-center">
-          {children}
-        </div>
+      <div className="flex h-full flex-col justify-items-center bg-noisyGradient bg-cover">
+        {children}
       </div>
     </DynamicAblyProvider>
   );
