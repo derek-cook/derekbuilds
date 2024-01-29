@@ -2,6 +2,7 @@ import "~/styles/globals.css";
 
 import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
+import { Analytics } from "@vercel/analytics/react";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -42,6 +43,7 @@ export default function RootLayout({
             <TRPCReactProvider cookies={cookies().toString()}>
               <main className="flex h-dvh flex-col">{children}</main>
               <footer className=""></footer>
+              <Analytics />
             </TRPCReactProvider>
           </ClerkProvider>
         </ThemeProvider>
