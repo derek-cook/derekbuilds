@@ -18,6 +18,9 @@ export const metadata = {
   title: "Derek Cook",
   description: "What I'm working on",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
+  openGraph: {
+    url: "https://www.derekbuilds.ai/",
+  },
 };
 
 export default function RootLayout({
