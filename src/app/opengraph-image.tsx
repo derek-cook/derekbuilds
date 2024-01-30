@@ -21,6 +21,7 @@ export default function Image() {
         style={{
           fontSize: 128,
           background: "green",
+          backgroundImage: `url("/noisygradient-dark.png")`,
           width: "100%",
           height: "100%",
           display: "flex",

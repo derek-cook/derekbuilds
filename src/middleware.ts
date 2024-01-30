@@ -6,7 +6,7 @@ import { type NextMiddleware } from "next/server";
 // See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring your middleware
 export default async function middleware(...args: Parameters<NextMiddleware>) {
   return await authMiddleware({
-    publicRoutes: ["/", "/api/qa", "/opengraph-image.png"],
+    publicRoutes: ["/", "/api/qa", "/opengraph-image"],
     // debug: true,
   })(...args);
 }
