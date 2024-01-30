@@ -107,13 +107,6 @@ export default function Pools() {
                   notice a similar topic, 'shoes' was already created and will
                   be joined automatically.`}
               </p>
-              <p>
-                {`Topic similarity is determined by comparing the embedding of a
-                  topic in a vector database using dot-product comparison. If
-                  the result is greater than the threshold, the most similar
-                  topic is joined instead. Otherwise, a new conversation is
-                  created.`}
-              </p>
             </PopoverContent>
           </Popover>
         </div>

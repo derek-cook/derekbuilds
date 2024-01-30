@@ -98,7 +98,7 @@ export default function Home() {
 
         <BentoItem size="square">
           <Card className="h-full">
-            <div className="absolute z-50 max-w-44">
+            <div className="absolute max-w-44">
               <CardHeader className="h-full">
                 <CardTitle>Airwave</CardTitle>
                 <CardDescription className="text-xs">
@@ -115,22 +115,24 @@ export default function Home() {
           <Card className="h-full">
             <div className="absolute z-50 max-w-40">
               <CardHeader className="">
-                <CardDescription className="text-xs">{`(what others see)`}</CardDescription>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant={"link"}
-                      className="top-4 self-start p-0 text-xs text-muted-foreground underline"
-                    >
-                      under the hood
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="max-w-xs space-y-3 p-4 text-sm">
-                    <p>
-                      {`Inspired by Figma's cursor chat. This uses a custom websocket client on the frontend. Connections are managed on Cloudflare Durable Objects`}
-                    </p>
-                  </PopoverContent>
-                </Popover>
+                <CardDescription className="text-xs">
+                  {`(what others see)`}
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant={"link"}
+                        className="p-0 text-xs text-muted-foreground underline"
+                      >
+                        details
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="max-h-96 max-w-xs space-y-3 p-4 text-sm">
+                      <p>
+                        {`Live multiplayer cursors inspired by Figma's cursor chat and Liveblocks. I built a custom websocket client on the frontend, like a lightweight version of Ably. Connections to channels are managed on Cloudflare Durable Objects which supports persistent memory and edge optimization in a Node isolate runtime.`}
+                      </p>
+                    </PopoverContent>
+                  </Popover>
+                </CardDescription>
               </CardHeader>
             </div>
             <DemoAppB>
@@ -144,12 +146,12 @@ export default function Home() {
             <CardTitle className="">Links</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col items-start gap-3 text-sm text-muted-foreground">
-            <Link href="https://www.linkedin.com/in/derekcook33/">
-              linkedin
-            </Link>
             <Link href="https://github.com/derek-cook">github</Link>
             <Link href="https://read.cv/derekcook">read.cv</Link>
             <Link href="https://twitter.com/derek_cookie">twitter</Link>
+            <Link href="https://www.linkedin.com/in/derekcook33/">
+              linkedin
+            </Link>
           </CardContent>
         </div>
       </BentoContainer>
