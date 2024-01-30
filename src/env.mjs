@@ -36,6 +36,7 @@ export const env = createEnv({
     NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL: z.string(),
     NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL: z.string(),
     NEXT_PUBLIC_SUPABASE_URL: z.string(),
+    NEXT_PUBLIC_WEBSITE_URL: z.string(),
   },
 
   /**
@@ -57,6 +58,7 @@ export const env = createEnv({
     NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL:
       process.env.NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    NEXT_PUBLIC_WEBSITE_URL: process.env.NEXT_PUBLIC_WEBSITE_URL,
     ABLY_ROOT_API_KEY: process.env.ABLY_ROOT_API_KEY,
     SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY,
   },

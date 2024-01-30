@@ -113,7 +113,7 @@ export default function Home() {
         </BentoItem>
         <BentoItem size="square">
           <Card className="h-full">
-            <div className="absolute max-w-40">
+            <div className="absolute z-50 max-w-40">
               <CardHeader className="">
                 <CardDescription className="text-xs">{`(what others see)`}</CardDescription>
                 <Popover>
@@ -122,7 +122,7 @@ export default function Home() {
                       variant={"link"}
                       className="top-4 self-start p-0 text-xs text-muted-foreground underline"
                     >
-                      More details
+                      under the hood
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className="max-w-xs space-y-3 p-4 text-sm">

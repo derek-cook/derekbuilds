@@ -15,23 +15,9 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Derek Builds AI",
+  title: "Derek Cook",
   description: "What I'm working on",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
-  openGraph: {
-    title: "Derek Builds AI",
-    description: "What I'm working on",
-    url: "https://derekbuildsai.ai",
-    siteName: "Derek Builds AI",
-    images: [
-      {
-        url: "https://derekbuilds.ai/opengraph-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Derek Builds AI",
-      },
-    ],
-  },
 };
 
 export default function RootLayout({
