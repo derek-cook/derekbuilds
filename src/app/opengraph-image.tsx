@@ -20,8 +20,7 @@ export default function Image() {
       <div
         style={{
           fontSize: 128,
-          background: "white",
-          backgroundImage: `url("/opengraph-image.png")`,
+          background: "green",
           width: "100%",
           height: "100%",
           display: "flex",
