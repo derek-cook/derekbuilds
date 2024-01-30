@@ -20,9 +20,9 @@ export default async function Image() {
   ).then((res) => res.arrayBuffer());
   const outfitRegularData = await outfitRegular;
 
-  const imageData = await fetch(
-    new URL("../../public/pool_1_sm.png", import.meta.url),
-  ).then((res) => res.arrayBuffer());
+  // const imageData = await fetch(
+  //   new URL("../../public/pool_1_sm.png", import.meta.url),
+  // ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
     (
@@ -39,7 +39,7 @@ export default async function Image() {
           padding: "3rem 3rem",
         }}
       >
-        <img
+        {/* <img
           alt="pool"
           style={{
             fontSize: 128,
@@ -50,7 +50,7 @@ export default async function Image() {
           width="500"
           height="500"
           src={imageData as unknown as string}
-        />
+        /> */}
         <h1
           style={{
             fontSize: 128,
