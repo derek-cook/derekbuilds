@@ -9,6 +9,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "~/components/ThemeProvider";
 import { cn } from "~/lib/utils";
+import { env } from "~/env.mjs";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -19,8 +20,13 @@ export const metadata = {
   title: "Derek Cook",
   description: "What I'm working on",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
+  metadataBase: new URL(env.NEXT_PUBLIC_WEBSITE_URL),
   openGraph: {
-    url: "https://www.derekbuilds.ai/",
+    title: "Derek Cook",
+    description: "What I'm working on",
+    url: env.NEXT_PUBLIC_WEBSITE_URL,
+    siteName: "Derek Cook",
+    type: "website",
   },
 };
 
