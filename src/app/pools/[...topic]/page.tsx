@@ -58,7 +58,7 @@ export default function Pool({ params }: { params: { topic: string } }) {
 
   return (
     <div className="flex flex-1 justify-center">
-      <div className="flex max-h-screen max-w-lg flex-1 flex-col space-y-8 p-4">
+      <div className="flex max-w-lg flex-1 flex-col space-y-8 p-4">
         <div className="flex items-center">
           <Button
             title="back"
