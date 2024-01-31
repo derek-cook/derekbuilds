@@ -28,6 +28,10 @@ export const metadata = {
     siteName: "Derek Cook",
     type: "website",
   },
+  twitter: {
+    title: "Derek Cook",
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
