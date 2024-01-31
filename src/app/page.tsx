@@ -81,7 +81,7 @@ export default function Home() {
             <CardFooter className="">
               <form onSubmit={handleSubmit} className="w-full">
                 <Input
-                  className="text-xs"
+                  className=""
                   ref={inputRef}
                   type="text"
                   onChange={handleInputChange}
@@ -100,28 +100,14 @@ export default function Home() {
           <Card className="h-full">
             <div className="absolute max-w-44">
               <CardHeader className="h-full">
-                <CardTitle>Airwave</CardTitle>
+                <CardTitle>Live Cursors</CardTitle>
                 <CardDescription className="text-xs">
-                  {`Try moving your pointer here`}
-                </CardDescription>
-              </CardHeader>
-            </div>
-            <DemoAppA>
-              <DemoChat disabled />
-            </DemoAppA>
-          </Card>
-        </BentoItem>
-        <BentoItem size="square">
-          <Card className="h-full">
-            <div className="absolute z-50 max-w-40">
-              <CardHeader className="">
-                <CardDescription className="text-xs">
-                  {`(what others see)`}
+                  <span className="block">{`Move your pointer here, click to chat.`}</span>
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button
                         variant={"link"}
-                        className="p-0 text-xs text-muted-foreground underline"
+                        className="relative z-50 p-0 text-xs text-muted-foreground underline"
                       >
                         details
                       </Button>
@@ -135,6 +121,18 @@ export default function Home() {
                 </CardDescription>
               </CardHeader>
             </div>
+            <DemoAppA>
+              <DemoChat disabled />
+            </DemoAppA>
+          </Card>
+        </BentoItem>
+        <BentoItem size="square">
+          <Card className="h-full">
+            <CardHeader className="absolute">
+              <CardDescription className="text-xs">
+                what others see
+              </CardDescription>
+            </CardHeader>
             <DemoAppB>
               <DemoChat />
             </DemoAppB>

@@ -1,13 +1,11 @@
 "use client";
 import React, { type PointerEvent, useRef, useState } from "react";
 
-import { type MemberData } from "./client";
 import { useChannel, useMembers } from "./hooks";
 import { useEffect } from "react";
 import Cursor from "./Cursor";
-
-const fetchUser = (demoUser: string): Promise<MemberData> =>
-  Promise.resolve({ clientId: demoUser });
+import { useKeyCommand } from "./hooks/useKeyCommand";
+import { HoverInput } from "./HoverInput";
 
 type DemoChatProps = {
   username?: string;
@@ -18,11 +16,26 @@ type DemoState = Record<string, [number, number]>;
 
 const DemoChat: React.FC<DemoChatProps> = ({ username, disabled = false }) => {
   const [location, setLocation] = useState<DemoState>({});
+  const [memberMessages, setMemberMessages] = useState<Record<string, string>>(
+    {},
+  );
+  const [message, setMessage] = useState("");
+  const [[x, y], setCoords] = useState<[number, number]>([0, 0]);
+
   const boxRef = useRef<HTMLDivElement>(null);
-  // const user = useQuery({
-  //   queryKey: [username],
-  //   queryFn: () => fetchUser(username),
-  // });
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // const { x, y } = useCursorPosition(boxRef);
+  const { isEnabled } = useKeyCommand({
+    ref: boxRef,
+    onKeydown() {
+      console.log("KEYDOWN");
+    },
+    onClose() {
+      setMessage("");
+      channel.trigger("onmessage", "");
+    },
+  });
 
   const channel = useChannel("demo");
   const memberData = useMembers("demo");
@@ -37,16 +50,30 @@ const DemoChat: React.FC<DemoChatProps> = ({ username, disabled = false }) => {
         [event.clientId]: event.data as [number, number],
       }));
     });
+    channel.bind("onmessage", (event) => {
+      console.log(event);
+      setMemberMessages((state) => ({
+        ...state,
+        [event.clientId]: event.data as string,
+      }));
+      console.log(event);
+    });
   }, [channel]);
 
   const handlePointerMove = (e: PointerEvent) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const coords = [
+    const coords: [number, number] = [
       Math.round(e.clientX - rect.left),
       Math.round(e.clientY - rect.top),
     ];
+    setCoords(coords);
 
     channel.trigger("pointermove", coords);
+  };
+
+  const handleMessageChange = (value: string) => {
+    setMessage(value);
+    channel.trigger("onmessage", value);
   };
 
   return (
@@ -60,10 +87,20 @@ const DemoChat: React.FC<DemoChatProps> = ({ username, disabled = false }) => {
         others.map((m) => (
           <Cursor
             key={m.clientId}
-            label={`User: ${m.clientId}`}
+            label={`${m.clientId}`}
             location={location[m.clientId]}
+            text={memberMessages[m.clientId]}
           />
         ))}
+      {disabled && (
+        <HoverInput
+          value={message}
+          onChange={handleMessageChange}
+          location={[x, y]}
+          ref={inputRef}
+          isEnabled={isEnabled}
+        />
+      )}
     </div>
   );
 };

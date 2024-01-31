@@ -92,7 +92,7 @@ export default function Pool({ params }: { params: { topic: string } }) {
         </div>
         <form className="flex w-full gap-1" onSubmit={handleSubmit}>
           <Input
-            className=" placeholder-gray-400 md:placeholder-gray-500"
+            className="placeholder-gray-400 md:placeholder-gray-500"
             onChange={handleChange}
             value={ownText}
             placeholder="Send a message"
