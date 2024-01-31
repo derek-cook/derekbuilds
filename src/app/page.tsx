@@ -144,10 +144,19 @@ export default function Home() {
             <CardTitle className="">Links</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col items-start gap-3 text-sm text-muted-foreground">
-            <Link href="https://github.com/derek-cook">github</Link>
-            <Link href="https://read.cv/derekcook">read.cv</Link>
-            <Link href="https://twitter.com/derek_cookie">twitter</Link>
-            <Link href="https://www.linkedin.com/in/derekcook33/">
+            <Link target="_blank" href="https://github.com/derek-cook">
+              github
+            </Link>
+            <Link target="_blank" href="https://read.cv/derekcook">
+              read.cv
+            </Link>
+            <Link target="_blank" href="https://twitter.com/derek_cookie">
+              twitter
+            </Link>
+            <Link
+              target="_blank"
+              href="https://www.linkedin.com/in/derekcook33/"
+            >
               linkedin
             </Link>
           </CardContent>
