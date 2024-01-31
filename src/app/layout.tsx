@@ -18,12 +18,12 @@ const inter = Inter({
 
 export const metadata = {
   title: "Derek Cook",
-  description: "What I'm working on",
+  description: "A collection of software concepts and projects.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
   metadataBase: new URL(env.NEXT_PUBLIC_WEBSITE_URL),
   openGraph: {
     title: "Derek Cook",
-    description: "What I'm working on",
+    description: "A collection of software concepts and projects.",
     url: env.NEXT_PUBLIC_WEBSITE_URL,
     siteName: "Derek Cook",
     type: "website",
