@@ -53,17 +53,22 @@ export class Channel {
     this.clientId = userName;
   }
 
+  isConnected() {
+    return this.websocket?.readyState === this.websocket?.OPEN;
+  }
+
   connect(channelName: string, opts: ChannelOptions = {}) {
+    console.log("CONNECT");
     if (typeof document === "undefined") return;
     this.clientId = opts.memberData?.clientId ?? this.clientId;
     const wsProtocol =
       document.location.protocol === "http:" ? "ws://" : "wss://";
     // NOTE: localhost can't be changed to its ip address. This only affects the case of locally running the client on a mobile device. todo: fix this
     // use workers url to test on mobile device
-    const host =
-      process.env.NODE_ENV === "development"
-        ? "localhost:8787"
-        : "ws-durable-obj-demo.derekcook.workers.dev";
+    const host = "ws-durable-obj-demo.derekcook.workers.dev";
+    // process.env.NODE_ENV === "development"
+    //   ? "localhost:8787"
+    //   : "ws-durable-obj-demo.derekcook.workers.dev";
     const ws = new WebSocket(
       `${wsProtocol}${host}/api/websocket?channel=${channelName}`,
     );
@@ -120,6 +125,7 @@ export class Channel {
   }
 
   disconnect() {
+    console.log("DISCONNECT");
     this.websocket?.close();
   }
 
@@ -167,6 +173,7 @@ export class Channel {
     >;
     if (listenerSet) {
       listenerSet.add(listener);
+      return () => listenerSet.delete(listener);
     } else {
       this.eventListeners.set(
         event,
@@ -174,6 +181,11 @@ export class Channel {
           listener as BoundListener<unknown>,
         ),
       );
+      return () => {
+        this.eventListeners
+          .get(event)
+          ?.delete(listener as BoundListener<unknown>);
+      };
     }
   };
 
@@ -197,13 +209,14 @@ export class Channel {
 
   getStatus() {
     const ws = this.websocket;
-    return ws
-      ? {
-          [ws.CLOSED]: "CLOSED",
-          [ws.CONNECTING]: "CONNECTING",
-          [ws.OPEN]: "OPEN",
-          [ws.CLOSING]: "CLOSING",
-        }[ws.readyState]
-      : null;
+    if (!ws) return "NO_WS";
+    return (
+      {
+        [ws.CLOSED]: "CLOSED",
+        [ws.CONNECTING]: "CONNECTING",
+        [ws.OPEN]: "OPEN",
+        [ws.CLOSING]: "CLOSING",
+      }[ws.readyState] ?? ""
+    );
   }
 }

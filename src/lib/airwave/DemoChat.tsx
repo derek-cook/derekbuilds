@@ -1,7 +1,7 @@
 "use client";
 import React, { type PointerEvent, useRef, useState } from "react";
 
-import { useChannel, useMembers } from "./hooks";
+import { useChannel } from "./hooks";
 import { useEffect } from "react";
 import Cursor from "./Cursor";
 import { useKeyCommand } from "./hooks/useKeyCommand";
@@ -33,31 +33,27 @@ const DemoChat: React.FC<DemoChatProps> = ({ username, disabled = false }) => {
     },
     onClose() {
       setMessage("");
-      channel.trigger("onmessage", "");
+      channel?.trigger("onmessage", "");
     },
   });
 
   const channel = useChannel("demo");
-  const memberData = useMembers("demo");
-  const others = memberData.filter(
-    (member) => member.clientId !== channel.clientId,
-  );
 
   useEffect(() => {
-    channel.bind("pointermove", (event) => {
-      setLocation((state) => ({
-        ...state,
-        [event.clientId]: event.data as [number, number],
-      }));
-    });
-    channel.bind("onmessage", (event) => {
-      console.log(event);
-      setMemberMessages((state) => ({
-        ...state,
-        [event.clientId]: event.data as string,
-      }));
-      console.log(event);
-    });
+    if (channel) {
+      channel.bind("pointermove", (event) => {
+        setLocation((state) => ({
+          ...state,
+          [event.clientId]: event.data as [number, number],
+        }));
+      });
+      channel.bind("onmessage", (event) => {
+        setMemberMessages((state) => ({
+          ...state,
+          [event.clientId]: event.data as string,
+        }));
+      });
+    }
   }, [channel]);
 
   const handlePointerMove = (e: PointerEvent) => {
@@ -68,12 +64,12 @@ const DemoChat: React.FC<DemoChatProps> = ({ username, disabled = false }) => {
     ];
     setCoords(coords);
 
-    channel.trigger("pointermove", coords);
+    channel?.trigger("pointermove", coords);
   };
 
   const handleMessageChange = (value: string) => {
     setMessage(value);
-    channel.trigger("onmessage", value);
+    channel?.trigger("onmessage", value);
   };
 
   return (
@@ -84,14 +80,17 @@ const DemoChat: React.FC<DemoChatProps> = ({ username, disabled = false }) => {
       onPointerMove={handlePointerMove}
     >
       {!disabled &&
-        others.map((m) => (
-          <Cursor
-            key={m.clientId}
-            label={`${m.clientId}`}
-            location={location[m.clientId]}
-            text={memberMessages[m.clientId]}
-          />
-        ))}
+        channel?.members.map(
+          (memberId) =>
+            memberId !== channel.clientId && (
+              <Cursor
+                key={memberId}
+                label={memberId}
+                location={location[memberId]}
+                text={memberMessages[memberId]}
+              />
+            ),
+        )}
       {disabled && (
         <HoverInput
           value={message}
