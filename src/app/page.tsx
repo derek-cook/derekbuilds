@@ -13,8 +13,7 @@ import { Input } from "~/components/ui/Input";
 import { useEffect, useRef } from "react";
 import PoolsCard from "~/components/PoolsCard";
 import { BentoContainer, BentoItem } from "~/components/Bento";
-import { DemoAppA, DemoAppB } from "~/lib/airwave/DemoApp";
-import DemoChat from "~/lib/airwave/DemoChat";
+import { DemoAppA, DemoAppB } from "~/lib/realtime/components/DemoApp";
 import Link from "next/link";
 import {
   Popover,
@@ -22,6 +21,15 @@ import {
   PopoverTrigger,
 } from "~/components/ui/popover";
 import { Button } from "~/components/ui/Button";
+import dynamic from "next/dynamic";
+
+const DemoChat = dynamic(
+  () =>
+    import("../lib/realtime/components/DemoChat").then((mod) => mod.DemoChat),
+  {
+    ssr: false,
+  },
+);
 
 const placeholders = [
   "What was your most recent role?",
@@ -79,14 +87,21 @@ export default function Home() {
               {completion}
             </CardContent>
             <CardFooter className="">
-              <form onSubmit={handleSubmit} className="w-full">
+              <form
+                onSubmit={handleSubmit}
+                className="flex w-full flex-col gap-2 md:flex-row"
+              >
                 <Input
                   className=""
                   ref={inputRef}
                   type="text"
                   onChange={handleInputChange}
                   value={input}
+                  enterKeyHint="send"
                 />
+                <Button type="submit" className="">
+                  Send
+                </Button>
               </form>
             </CardFooter>
           </Card>
