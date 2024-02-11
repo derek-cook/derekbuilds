@@ -30,7 +30,7 @@ const PoolsCard = () => {
               details
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="max-h-96 max-w-xs space-y-3 overflow-scroll bg-accent p-4 text-sm">
+          <PopoverContent className="max-h-96 max-w-xs space-y-3 overflow-scroll p-4 text-sm">
             <h3 className="font-bold">How it works</h3>
             <p>
               {`Topic similarity is determined by comparing the embedding of a
