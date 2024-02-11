@@ -22,6 +22,7 @@ import {
 } from "~/components/ui/popover";
 import { Button } from "~/components/ui/Button";
 import dynamic from "next/dynamic";
+import { MagicWandIcon } from "@radix-ui/react-icons";
 
 const DemoChat = dynamic(
   () =>
@@ -33,8 +34,8 @@ const DemoChat = dynamic(
 
 const placeholders = [
   "What was your most recent role?",
-  "How many years of experience?",
-  "What is your area of expertise?",
+  "How did you make Live Cursors?",
+  "What are use cases for Pools?",
 ];
 
 export default function Home() {
@@ -60,7 +61,7 @@ export default function Home() {
       }
       if (length === placeholders[phIndex]!.length) {
         isForward = false;
-        pause = 500;
+        pause = 300;
       }
       if (length === 0) {
         isForward = true;
@@ -81,26 +82,27 @@ export default function Home() {
         <BentoItem size="md">
           <Card className="flex h-full min-h-48 flex-col justify-between">
             <CardHeader className="pb-2">
-              <CardTitle className="">Ask about my experience</CardTitle>
+              <CardTitle className="">Ask about my work</CardTitle>
             </CardHeader>
-            <CardContent className="overflow-auto py-2">
+            <CardContent className="overflow-auto py-2 text-xs">
               {completion}
             </CardContent>
             <CardFooter className="">
-              <form
-                onSubmit={handleSubmit}
-                className="flex w-full flex-col gap-2 md:flex-row"
-              >
+              <form onSubmit={handleSubmit} className="flex w-full gap-2">
                 <Input
-                  className=""
+                  className="placeholder:text-sm"
                   ref={inputRef}
                   type="text"
                   onChange={handleInputChange}
                   value={input}
                   enterKeyHint="send"
                 />
-                <Button type="submit" className="">
-                  Send
+                <Button
+                  className="aspect-square p-0"
+                  title="Send message"
+                  type="submit"
+                >
+                  <MagicWandIcon width={18} height={18} />
                 </Button>
               </form>
             </CardFooter>
@@ -117,7 +119,8 @@ export default function Home() {
               <CardHeader className="h-full">
                 <CardTitle>Live Cursors</CardTitle>
                 <CardDescription className="text-xs">
-                  <span className="block">{`Move your pointer here, click to chat.`}</span>
+                  <span className="block md:hidden">{`Hover around in this box, tap to chat.`}</span>
+                  <span className="hidden md:visible md:block">{`Hover around in this box, click to chat.`}</span>
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button
@@ -129,7 +132,7 @@ export default function Home() {
                     </PopoverTrigger>
                     <PopoverContent className="max-h-96 max-w-xs space-y-3 p-4 text-sm">
                       <p>
-                        {`Live multiplayer cursors inspired by Figma's cursor chat and Liveblocks. I built a custom websocket client on the frontend, like a lightweight version of Ably. Connections to channels are managed on Cloudflare Durable Objects which supports persistent memory and edge optimization in a Node isolate runtime.`}
+                        {`Live multiplayer cursors, inspired by Figma's cursor chat. I made a simple websocket client on the frontend, similar to Ably. Connections to channels are managed on Cloudflare Durable Objects which supports persistent memory across serverless invocations in a Node isolate runtime.`}
                       </p>
                     </PopoverContent>
                   </Popover>

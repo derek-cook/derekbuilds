@@ -18,7 +18,7 @@ const PoolsCard = () => {
         <CardDescription className="text-xs">{`Embedded chat app demo`}</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 text-xs">
-        {`Similar topics are deduplicated. For example, entering 'React Discussion' or 'React Frontend' will join the same conversation.`}
+        {`Enter a topic, instantly join the conversation. People entering similar topics are joined together.`}
       </CardContent>
       <CardFooter className="flex justify-end gap-2">
         <Popover>

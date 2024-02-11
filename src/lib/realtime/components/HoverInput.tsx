@@ -24,7 +24,7 @@ export const HoverInput = forwardRef<HTMLInputElement, HoverInputProps>(
 
     return !isEnabled ? null : (
       <div
-        className="w-min rounded-xl rounded-tl-none bg-teal-400 px-4 py-2 text-sm text-black shadow-md"
+        className="w-min rounded-xl rounded-tl-none bg-teal-400 px-4 py-2 text-black shadow-md"
         style={{
           position: "relative",
           top: y + 20,

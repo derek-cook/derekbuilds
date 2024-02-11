@@ -24,6 +24,9 @@ export class Realtime {
   }
 
   getChannel(channelId: string) {
+    if (!document) {
+      console.error("Realtime client is only meant to be used in the browser");
+    }
     if (this.channels.get(channelId)) {
       return this.channels.get(channelId);
     }
