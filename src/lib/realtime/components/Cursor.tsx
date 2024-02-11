@@ -17,7 +17,7 @@ const Cursor: React.FC<CursorProps> = ({ label, location, children, text }) => {
       className="linear sage-other-cursor pointer-events-none transition-all duration-150"
     >
       <div className="relative left-4 w-max">
-        <p className="py-1 text-xs text-gray-400">{label}</p>
+        {/* <p className="py-1 text-xs text-gray-400">{label}</p> */}
         {text && (
           <MessageBubble
             isOwn={false}
