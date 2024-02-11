@@ -115,12 +115,17 @@ export default function Home() {
 
         <BentoItem size="square">
           <Card className="h-full">
-            <div className="absolute max-w-44">
+            <div className="absolute max-w-44 md:max-w-60">
               <CardHeader className="h-full">
                 <CardTitle>Live Cursors</CardTitle>
                 <CardDescription className="text-xs">
-                  <span className="block md:hidden">{`Hover around in this box, tap to chat.`}</span>
-                  <span className="hidden md:visible md:block">{`Hover around in this box, click to chat.`}</span>
+                  <span className="block">{`Hover on this box.`}</span>
+                  <span className="block">
+                    {`The box on the right is what others see. `}
+                    <span className="md:hidden">Tap</span>
+                    <span className="hidden md:inline">Click</span>
+                    {` to chat.`}
+                  </span>
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button
