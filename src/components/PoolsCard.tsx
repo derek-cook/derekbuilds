@@ -50,11 +50,7 @@ const PoolsCard = () => {
             <p className="text-xs">{`People often post duplicate questions. This embedding retrieval strategy could be used to deduplicate questions.`}</p>
           </PopoverContent>
         </Popover>
-        <Button
-          variant={"link"}
-          size={"sm"}
-          className="bg-noisyGradient bg-cover text-xs"
-        >
+        <Button size={"sm"} className="">
           <Link target="_blank" href="/pools">
             Try it out
           </Link>

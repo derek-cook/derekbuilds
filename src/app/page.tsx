@@ -147,9 +147,9 @@ export default function Home() {
         <BentoItem size="square">
           <Card className="h-full">
             <CardHeader className="absolute">
-              <CardDescription className="text-xs">
+              {/* <CardDescription className="text-xs">
                 what others see
-              </CardDescription>
+              </CardDescription> */}
             </CardHeader>
             <DemoAppB>
               <DemoChat />
