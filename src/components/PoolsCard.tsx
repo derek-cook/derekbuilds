@@ -17,7 +17,7 @@ const PoolsCard = () => {
         <CardTitle>Pools</CardTitle>
         <CardDescription className="text-xs">{`Embedded chat app demo`}</CardDescription>
       </CardHeader>
-      <CardContent className="flex-1 text-xs">
+      <CardContent className="flex-1 text-sm">
         {`Enter a topic, instantly join the conversation. People entering similar topics are joined together.`}
       </CardContent>
       <CardFooter className="flex justify-end gap-2">

@@ -82,9 +82,9 @@ export default function Home() {
         <BentoItem size="md">
           <Card className="flex h-full min-h-48 flex-col justify-between">
             <CardHeader className="pb-2">
-              <CardTitle className="">Ask about my work</CardTitle>
+              <CardTitle className="">Ask AI about my work</CardTitle>
             </CardHeader>
-            <CardContent className="overflow-auto py-2 text-xs">
+            <CardContent className="overflow-auto py-2 text-sm">
               {completion}
             </CardContent>
             <CardFooter className="">
@@ -113,15 +113,14 @@ export default function Home() {
           <PoolsCard />
         </BentoItem>
 
-        <BentoItem size="square">
-          <Card className="h-full">
+        <BentoItem size="square" className="flex w-full">
+          <Card className="flex h-full min-h-48 w-full">
             <div className="absolute max-w-44 md:max-w-60">
               <CardHeader className="h-full">
                 <CardTitle>Live Cursors</CardTitle>
                 <CardDescription className="text-xs">
-                  <span className="block">{`Hover on this box.`}</span>
+                  <span className="block">{`Move your pointer in this box.`}</span>
                   <span className="block">
-                    {`The box on the right is what others see. `}
                     <span className="md:hidden">Tap</span>
                     <span className="hidden md:inline">Click</span>
                     {` to chat.`}
@@ -145,21 +144,48 @@ export default function Home() {
               </CardHeader>
             </div>
             <DemoAppA>
-              <DemoChat disabled />
+              <DemoChat />
             </DemoAppA>
           </Card>
         </BentoItem>
+
         <BentoItem size="square">
-          <Card className="h-full">
-            <CardHeader className="absolute">
-              {/* <CardDescription className="text-xs">
-                what others see
-              </CardDescription> */}
-            </CardHeader>
+          {/* Move into one bento box with vertical bar between demo apps */}
+          <Card className="h-full min-h-48">
             <DemoAppB>
               <DemoChat />
             </DemoAppB>
           </Card>
+        </BentoItem>
+
+        <BentoItem size="square">
+          <Link
+            target="_blank"
+            href="https://www.amazon.com/Derek-Cook-Nutrition-Label/dp/B06X9G98GB?crid=3B2ZTUCYZ67L2&keywords=nutrition+label&qid=1707800191&s=digital-skills&sprefix=nutrition+label,alexa-skills,156&sr=1-1"
+          >
+            <Card className="h-full min-h-48">
+              <CardHeader>
+                <CardTitle>Nutrition Label</CardTitle>
+                <CardDescription className="text-sm">
+                  An Alexa skill that gives you nutritional information on
+                  almost any food or drink.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
+        </BentoItem>
+
+        <BentoItem size="square">
+          <Link target="_blank" href="https://coins-app.netlify.app/">
+            <Card className="h-full min-h-48">
+              <CardHeader>
+                <CardTitle>Coins</CardTitle>
+                <CardDescription className="text-sm">
+                  Decommisioned. A cryptocurrency tracker.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
         </BentoItem>
 
         <div className="col-span-full">
