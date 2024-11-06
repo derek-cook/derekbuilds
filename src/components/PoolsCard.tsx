@@ -14,7 +14,9 @@ const PoolsCard = () => {
   return (
     <Card className="image-corner flex h-full flex-col">
       <CardHeader>
-        <CardTitle>Pools</CardTitle>
+        <Link target="_blank" href="/pools" className="underline">
+          <CardTitle>Pools</CardTitle>
+        </Link>
         <CardDescription className="text-xs">{`Embedded chat app demo`}</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 text-sm">
@@ -50,11 +52,6 @@ const PoolsCard = () => {
             <p className="text-xs">{`People often post duplicate questions. This embedding retrieval strategy could be used to deduplicate questions.`}</p>
           </PopoverContent>
         </Popover>
-        <Button size={"sm"} className="">
-          <Link target="_blank" href="/pools">
-            Try it out
-          </Link>
-        </Button>
       </CardFooter>
     </Card>
   );

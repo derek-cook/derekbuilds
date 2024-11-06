@@ -22,7 +22,7 @@ import {
 } from "~/components/ui/popover";
 import { Button } from "~/components/ui/Button";
 import dynamic from "next/dynamic";
-import { MagicWandIcon } from "@radix-ui/react-icons";
+import { PaperPlaneIcon } from "@radix-ui/react-icons";
 
 const DemoChat = dynamic(
   () =>
@@ -71,9 +71,10 @@ export default function Home() {
     return () => clearInterval(intv);
   }, []);
 
-  const { completion, input, handleInputChange, handleSubmit } = useCompletion({
-    api: "/api/qa",
-  });
+  const { completion, input, handleInputChange, handleSubmit, isLoading } =
+    useCompletion({
+      api: "/api/qa",
+    });
 
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col items-center px-4 py-6">
@@ -101,8 +102,9 @@ export default function Home() {
                   className="aspect-square p-0"
                   title="Send message"
                   type="submit"
+                  disabled={isLoading}
                 >
-                  <MagicWandIcon width={18} height={18} />
+                  <PaperPlaneIcon width={18} height={18} />
                 </Button>
               </form>
             </CardFooter>
@@ -110,7 +112,21 @@ export default function Home() {
         </BentoItem>
 
         <BentoItem size="md">
-          <PoolsCard />
+          <Card className="bg-image-keyboard h-full min-h-48">
+            <CardHeader>
+              <Link
+                className="underline"
+                target="_blank"
+                href="https://intellitype.xyz"
+              >
+                <CardTitle>Intellitype Keyboard</CardTitle>
+              </Link>
+              <CardDescription className="text-sm">
+                A quick way to communicate for those with motor and verbal
+                disabilities.
+              </CardDescription>
+            </CardHeader>
+          </Card>
         </BentoItem>
 
         <BentoItem size="square" className="flex w-full">
@@ -158,35 +174,38 @@ export default function Home() {
           </Card>
         </BentoItem>
 
-        <BentoItem size="square">
-          <Link
-            target="_blank"
-            href="https://www.amazon.com/Derek-Cook-Nutrition-Label/dp/B06X9G98GB?crid=3B2ZTUCYZ67L2&keywords=nutrition+label&qid=1707800191&s=digital-skills&sprefix=nutrition+label,alexa-skills,156&sr=1-1"
-          >
-            <Card className="h-full min-h-48">
-              <CardHeader>
-                <CardTitle>Nutrition Label</CardTitle>
-                <CardDescription className="text-sm">
-                  An Alexa skill that gives you nutritional information on
-                  almost any food or drink.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </Link>
+        <BentoItem size="md">
+          <PoolsCard />
         </BentoItem>
 
-        <BentoItem size="square">
-          <Link target="_blank" href="https://coins-app.netlify.app/">
-            <Card className="h-full min-h-48">
-              <CardHeader>
-                <CardTitle>Coins</CardTitle>
-                <CardDescription className="text-sm">
-                  Decommisioned. A cryptocurrency tracker.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </Link>
-        </BentoItem>
+        <Card className="h-full min-h-48 border-none">
+          <CardHeader>
+            <Link
+              className="underline"
+              target="_blank"
+              href="https://www.amazon.com/Derek-Cook-Nutrition-Label/dp/B06X9G98GB?crid=3B2ZTUCYZ67L2&keywords=nutrition+label&qid=1707800191&s=digital-skills&sprefix=nutrition+label,alexa-skills,156&sr=1-1"
+            >
+              <CardTitle>Nutrition Label</CardTitle>
+            </Link>
+            <CardDescription className="text-sm">
+              An Alexa skill that gives you nutritional information on almost
+              any food or drink.
+            </CardDescription>
+          </CardHeader>
+
+          <CardHeader>
+            <Link
+              className="underline"
+              target="_blank"
+              href="https://coins-app.netlify.app/"
+            >
+              <CardTitle>Coins</CardTitle>
+            </Link>
+            <CardDescription className="text-sm">
+              Decommisioned. A cryptocurrency tracker.
+            </CardDescription>
+          </CardHeader>
+        </Card>
 
         <div className="col-span-full">
           <CardHeader>

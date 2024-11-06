@@ -37,7 +37,7 @@ export const BentoContainer = ({
   return (
     <div
       className={cn(
-        "grid  grid-cols-2 gap-4 sm:grid-cols-4 xl:grid-cols-4",
+        "grid  grid-cols-2 gap-4 gap-y-6 sm:grid-cols-4 xl:grid-cols-4",
         className,
       )}
     >
