@@ -10,12 +10,9 @@ export class Connection {
   constructor(channelId: string, clientId: string) {
     const wsProtocol =
       document.location.protocol === "http:" ? "ws://" : "wss://";
-    // NOTE: localhost can't be changed to its ip address. This only affects the case of locally running the client on a mobile device. todo: fix this
-    // use workers url to test on mobile device
-    const host =
-      process.env.NODE_ENV === "development"
-        ? "localhost:8787"
-        : "ws-durable-obj-demo.derekcook.workers.dev";
+    // NOTE: To run durable objects worker locally, use wrangler cli and localhost:8787 as host.
+    // For running locally on mobile, you must use the actual worker hostname, and the IP address for the browser URL.
+    const host = "ws-durable-obj-demo.derekcook.workers.dev";
     this.websocket = new WebSocket(
       `${wsProtocol}${host}/api/websocket?channel=${channelId}`,
     );

@@ -22,7 +22,7 @@ import {
 } from "~/components/ui/popover";
 import { Button } from "~/components/ui/Button";
 import dynamic from "next/dynamic";
-import { MagicWandIcon } from "@radix-ui/react-icons";
+import { PaperPlaneIcon } from "@radix-ui/react-icons";
 
 const DemoChat = dynamic(
   () =>
@@ -71,9 +71,10 @@ export default function Home() {
     return () => clearInterval(intv);
   }, []);
 
-  const { completion, input, handleInputChange, handleSubmit } = useCompletion({
-    api: "/api/qa",
-  });
+  const { completion, input, handleInputChange, handleSubmit, isLoading } =
+    useCompletion({
+      api: "/api/qa",
+    });
 
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col items-center px-4 py-6">
@@ -82,9 +83,9 @@ export default function Home() {
         <BentoItem size="md">
           <Card className="flex h-full min-h-48 flex-col justify-between">
             <CardHeader className="pb-2">
-              <CardTitle className="">Ask about my work</CardTitle>
+              <CardTitle className="">Ask AI about my work</CardTitle>
             </CardHeader>
-            <CardContent className="overflow-auto py-2 text-xs">
+            <CardContent className="overflow-auto py-2 text-sm">
               {completion}
             </CardContent>
             <CardFooter className="">
@@ -101,8 +102,9 @@ export default function Home() {
                   className="aspect-square p-0"
                   title="Send message"
                   type="submit"
+                  disabled={isLoading}
                 >
-                  <MagicWandIcon width={18} height={18} />
+                  <PaperPlaneIcon width={18} height={18} />
                 </Button>
               </form>
             </CardFooter>
@@ -110,18 +112,31 @@ export default function Home() {
         </BentoItem>
 
         <BentoItem size="md">
-          <PoolsCard />
+          <Card className="bg-image-keyboard h-full min-h-48">
+            <CardHeader>
+              <Link
+                className="underline"
+                target="_blank"
+                href="https://intellitype.xyz"
+              >
+                <CardTitle>Intellitype Keyboard</CardTitle>
+              </Link>
+              <CardDescription className="text-sm">
+                A quick way to communicate for those with motor and verbal
+                disabilities.
+              </CardDescription>
+            </CardHeader>
+          </Card>
         </BentoItem>
 
-        <BentoItem size="square">
-          <Card className="h-full">
+        <BentoItem size="square" className="flex w-full">
+          <Card className="flex h-full min-h-48 w-full">
             <div className="absolute max-w-44 md:max-w-60">
               <CardHeader className="h-full">
                 <CardTitle>Live Cursors</CardTitle>
                 <CardDescription className="text-xs">
-                  <span className="block">{`Hover on this box.`}</span>
+                  <span className="block">{`Move your pointer in this box.`}</span>
                   <span className="block">
-                    {`The box on the right is what others see. `}
                     <span className="md:hidden">Tap</span>
                     <span className="hidden md:inline">Click</span>
                     {` to chat.`}
@@ -145,22 +160,52 @@ export default function Home() {
               </CardHeader>
             </div>
             <DemoAppA>
-              <DemoChat disabled />
+              <DemoChat />
             </DemoAppA>
           </Card>
         </BentoItem>
+
         <BentoItem size="square">
-          <Card className="h-full">
-            <CardHeader className="absolute">
-              {/* <CardDescription className="text-xs">
-                what others see
-              </CardDescription> */}
-            </CardHeader>
+          {/* Move into one bento box with vertical bar between demo apps */}
+          <Card className="h-full min-h-48">
             <DemoAppB>
               <DemoChat />
             </DemoAppB>
           </Card>
         </BentoItem>
+
+        <BentoItem size="md">
+          <PoolsCard />
+        </BentoItem>
+
+        <Card className="h-full min-h-48 border-none">
+          <CardHeader>
+            <Link
+              className="underline"
+              target="_blank"
+              href="https://www.amazon.com/Derek-Cook-Nutrition-Label/dp/B06X9G98GB?crid=3B2ZTUCYZ67L2&keywords=nutrition+label&qid=1707800191&s=digital-skills&sprefix=nutrition+label,alexa-skills,156&sr=1-1"
+            >
+              <CardTitle>Nutrition Label</CardTitle>
+            </Link>
+            <CardDescription className="text-sm">
+              An Alexa skill that gives you nutritional information on almost
+              any food or drink.
+            </CardDescription>
+          </CardHeader>
+
+          <CardHeader>
+            <Link
+              className="underline"
+              target="_blank"
+              href="https://coins-app.netlify.app/"
+            >
+              <CardTitle>Coins</CardTitle>
+            </Link>
+            <CardDescription className="text-sm">
+              Decommisioned. A cryptocurrency tracker.
+            </CardDescription>
+          </CardHeader>
+        </Card>
 
         <div className="col-span-full">
           <CardHeader>

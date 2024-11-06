@@ -87,7 +87,7 @@ export const DemoChat: React.FC<DemoChatProps> = ({
               />
             ),
         )}
-      {disabled && (
+      {
         <HoverInput
           value={message}
           onChange={handleMessageChange}
@@ -95,7 +95,7 @@ export const DemoChat: React.FC<DemoChatProps> = ({
           ref={inputRef}
           isEnabled={isEnabled}
         />
-      )}
+      }
     </div>
   );
 };
