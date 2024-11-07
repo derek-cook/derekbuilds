@@ -167,7 +167,7 @@ export default function Home() {
 
         <BentoItem size="square">
           {/* Move into one bento box with vertical bar between demo apps */}
-          <Card className="h-full min-h-48">
+          <Card className="bg-dot-grid h-full min-h-48">
             <DemoAppB>
               <DemoChat />
             </DemoAppB>
