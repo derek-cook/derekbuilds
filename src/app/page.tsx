@@ -167,7 +167,7 @@ export default function Home() {
 
         <BentoItem size="square">
           {/* Move into one bento box with vertical bar between demo apps */}
-          <Card className="h-full min-h-48">
+          <Card className="bg-dot-grid h-full min-h-48">
             <DemoAppB>
               <DemoChat />
             </DemoAppB>
@@ -178,34 +178,40 @@ export default function Home() {
           <PoolsCard />
         </BentoItem>
 
-        <Card className="h-full min-h-48 border-none">
-          <CardHeader>
-            <Link
-              className="underline"
-              target="_blank"
-              href="https://www.amazon.com/Derek-Cook-Nutrition-Label/dp/B06X9G98GB?crid=3B2ZTUCYZ67L2&keywords=nutrition+label&qid=1707800191&s=digital-skills&sprefix=nutrition+label,alexa-skills,156&sr=1-1"
-            >
-              <CardTitle>Nutrition Label</CardTitle>
-            </Link>
-            <CardDescription className="text-sm">
-              An Alexa skill that gives you nutritional information on almost
-              any food or drink.
-            </CardDescription>
-          </CardHeader>
+        <BentoItem size="square">
+          <Card className="bg-image-nutrition-label h-full min-h-48">
+            <CardHeader>
+              <Link
+                className="underline"
+                target="_blank"
+                href="https://www.amazon.com/Derek-Cook-Nutrition-Label/dp/B06X9G98GB?crid=3B2ZTUCYZ67L2&keywords=nutrition+label&qid=1707800191&s=digital-skills&sprefix=nutrition+label,alexa-skills,156&sr=1-1"
+              >
+                <CardTitle>Nutrition Label</CardTitle>
+              </Link>
+              <CardDescription className="text-sm">
+                An Alexa skill that gives you nutritional information on almost
+                any food or drink.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        </BentoItem>
 
-          <CardHeader>
-            <Link
-              className="underline"
-              target="_blank"
-              href="https://coins-app.netlify.app/"
-            >
-              <CardTitle>Coins</CardTitle>
-            </Link>
-            <CardDescription className="text-sm">
-              Decommisioned. A cryptocurrency tracker.
-            </CardDescription>
-          </CardHeader>
-        </Card>
+        <BentoItem size="square">
+          <Card className=" bg-image-coins h-full min-h-48">
+            <CardHeader>
+              <Link
+                className="underline"
+                target="_blank"
+                href="https://coins-app.netlify.app/"
+              >
+                <CardTitle>Coins</CardTitle>
+              </Link>
+              <CardDescription className="text-sm">
+                Decommisioned. A cryptocurrency tracker.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        </BentoItem>
 
         <div className="col-span-full">
           <CardHeader>
