@@ -122,8 +122,8 @@ export default function Home() {
                 <CardTitle>Intellitype Keyboard</CardTitle>
               </Link>
               <CardDescription className="text-sm">
-                A quick way to communicate for those with motor and verbal
-                disabilities.
+                Predictive text and text-to-speech for those with motor and
+                verbal impairments.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -167,7 +167,7 @@ export default function Home() {
 
         <BentoItem size="square">
           {/* Move into one bento box with vertical bar between demo apps */}
-          <Card className="bg-dot-grid h-full min-h-48">
+          <Card className="bg-dot-grid h-full min-h-48 p-3">
             <DemoAppB>
               <DemoChat />
             </DemoAppB>
@@ -189,8 +189,8 @@ export default function Home() {
                 <CardTitle>Nutrition Label</CardTitle>
               </Link>
               <CardDescription className="text-sm">
-                An Alexa skill that gives you nutritional information on almost
-                any food or drink.
+                An Alexa skill that gives you nutrition info on almost any food
+                or drink.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -207,7 +207,7 @@ export default function Home() {
                 <CardTitle>Coins</CardTitle>
               </Link>
               <CardDescription className="text-sm">
-                Decommisioned. A cryptocurrency tracker.
+                Decommisioned. A crypto tracker.
               </CardDescription>
             </CardHeader>
           </Card>

@@ -123,29 +123,29 @@
 
   .bg-image-keyboard {
     background-image: url("/intellitype-keyboard.png");
-    background-position: top 100px right 20px;
+    background-position: top 110px right 20px;
     background-repeat: no-repeat;
     background-size: 200px;
   }
 
   .bg-image-nutrition-label {
     background-image: url("/nutrition-label.png");
-    background-position: top 130px right 0px;
+    background-position: top 140px right 0px;
     background-repeat: no-repeat;
     background-size: 100px;
   }
 
   .bg-image-coins {
     background-image: url("/coins-iphone.png");
-    background-position: top 100px right 20px;
+    background-position: top 100px right 10px;
     background-repeat: no-repeat;
     background-size: 100px;
   }
 
   .bg-dot-grid {
     background-image: radial-gradient(rgb(139, 139, 139) 1px, transparent 0);
-    background-size: 40px 40px;
-    background-position: 50% 50%;
+    background-size: 20% 20%;
+    background-position: 20px 20px 20px 20px;
   }
 
   .sage-cursor-default {
