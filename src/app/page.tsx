@@ -122,8 +122,8 @@ export default function Home() {
                 <CardTitle>Intellitype Keyboard</CardTitle>
               </Link>
               <CardDescription className="text-sm">
-                A quick way to communicate for those with motor and verbal
-                disabilities.
+                Predictive text and text-to-speech for those with motor and
+                verbal impairments.
               </CardDescription>
             </CardHeader>
           </Card>
