@@ -1,34 +1,42 @@
-import { OpenAIStream, StreamingTextResponse } from "ai";
 import { type NextRequest } from "next/server";
 import OpenAI from "openai";
-import * as docs from "./docs";
 
 const openai = new OpenAI();
 
 export const POST = async (req: NextRequest) => {
   const { prompt } = (await req.json()) as { prompt: string };
 
-  const completion = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo",
-    messages: [
-      {
-        role: "system",
-        content: `
-        Answer the questions in the first person as Derek's AI assistant. You will answer questions about the resume and projects.
-        Keep answers brief or summarize when necessary.
-        Answers must be derived from the following documents, if questions aren't related to the documents say 'I don't have information on that'.\n\n
-        Resume markdown:\n
-        ${docs.resume}
-        \n\nProjects:\n
-        ${docs.projectDetails.pools}
-        ${docs.projectDetails.liveCursors}
-        ${docs.projectDetails.qaWidget}
-      `,
-      },
-      { role: "user", content: prompt },
-    ],
+  const response = await openai.responses.create({
+    model: "gpt-4.1-nano",
+    input: prompt,
     stream: true,
+    instructions: `Answer the questions as Derek's AI assistant. You will answer questions related to Derek's resume and projects.
+        Keep answers brief or summarize when necessary.
+        Answers must be based on documents from the file search results, such as Derek's resume and project info. If questions aren't related to the documents say 'I don't have information on that'`,
+    tool_choice: { type: "file_search" },
+    tools: [
+      {
+        type: "file_search",
+        vector_store_ids: ["vs_68759b5450b8819188071c849083ba8b"],
+        max_num_results: 2,
+      },
+    ],
   });
-  const stream = OpenAIStream(completion);
-  return new StreamingTextResponse(stream);
+
+  const stream = new ReadableStream({
+    async start(controller) {
+      for await (const chunk of response) {
+        if (chunk.type === "response.output_text.delta") {
+          controller.enqueue(new TextEncoder().encode(chunk.delta));
+        }
+      }
+      controller.close();
+    },
+  });
+
+  return new Response(stream, {
+    headers: {
+      'Content-Type': 'text/plain; charset=utf-8',
+    },
+  });
 };
