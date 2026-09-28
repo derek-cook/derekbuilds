@@ -153,7 +153,7 @@ export default function Home() {
                   Practical AI projects
                 </h2>
               </div>
-              <ol className="mt-auto px-6 pb-6 pt-5">
+              <ol className="mb-auto px-6 pb-6 pt-5">
                 <li className="grid grid-cols-[2rem_1fr] gap-2 border-t border-[#292b31] py-4 text-sm leading-6">
                   <span className="font-mono text-xs text-[#d8ff48]">01</span>
                   <span>
