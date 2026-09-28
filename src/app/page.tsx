@@ -34,15 +34,6 @@ const experience = [
   },
 ];
 
-const projects = [
-  { label: "Intellitype", href: "https://intellitype.xyz" },
-  { label: "Bitchat platforms", href: "https://github.com/derek-cook" },
-  { label: "Cursor Chat", href: "https://github.com/derek-cook" },
-  { label: "Pools", href: "/pools" },
-  { label: "Nutrition Label", href: "https://www.amazon.com/dp/B06X9G98GB" },
-  { label: "Coins", href: "https://coins-app.netlify.app/" },
-];
-
 function ArrowLink({
   href,
   children,
@@ -89,12 +80,6 @@ export default function Home() {
               Experience
             </a>
             <a
-              className="hidden transition-colors hover:text-white sm:inline"
-              href="#projects"
-            >
-              Projects
-            </a>
-            <a
               className="transition-colors hover:text-[#d8ff48]"
               href="mailto:derekcdev@gmail.com"
             >
@@ -116,7 +101,7 @@ export default function Home() {
           <div className="max-w-md self-end text-[1.05rem] leading-7 text-zinc-400">
             <p className="mb-5 flex items-center gap-2 font-mono text-xs text-[#d8ff48]">
               <span className="h-2 w-2 rounded-full bg-[#d8ff48] shadow-[0_0_0_4px_rgba(216,255,72,0.12)]" />
-              Open to the right next thing
+              Open to new opportunities
             </p>
             <p>
               Frontend-focused engineer with 7 years of experience building
@@ -189,8 +174,8 @@ export default function Home() {
                 <li className="grid grid-cols-[2rem_1fr] gap-2 border-t border-[#292b31] py-4 text-sm leading-6">
                   <span className="font-mono text-xs text-[#d8ff48]">01</span>
                   <span>
-                    1st place in a HubSpot AI hackathon for vector search in Help
-                    Desk.
+                    1st place in a HubSpot AI hackathon for vector search in
+                    Help Desk.
                   </span>
                 </li>
                 <li className="grid grid-cols-[2rem_1fr] gap-2 border-t border-[#292b31] py-4 text-sm leading-6">
@@ -242,33 +227,12 @@ export default function Home() {
             ))}
           </section>
 
-          <footer
-            id="projects"
-            className="flex flex-col gap-10 px-1 pb-4 pt-20 md:flex-row md:items-end md:justify-between md:pt-24"
-          >
-            <div>
-              <p className="mb-4 font-mono text-xs uppercase tracking-[0.14em] text-zinc-600">
-                Other projects
-              </p>
-              <h2 className="max-w-2xl text-[clamp(2.6rem,6vw,5rem)] font-semibold leading-[0.95] tracking-[-0.06em]">
-                Smaller projects,
-                <br />
-                still worth a click.
-              </h2>
-            </div>
-            <div className="flex flex-col items-start gap-2.5 text-sm md:items-end">
-              {projects.map((project) => (
-                <ArrowLink key={project.label} href={project.href}>
-                  {project.label}
-                </ArrowLink>
-              ))}
-              <span
-                className="my-1 h-px w-full bg-[#292b31]"
-                aria-hidden="true"
-              />
-              <ArrowLink href="https://github.com/derek-cook">
-                GitHub
-              </ArrowLink>
+          <footer className="mt-16 flex items-center justify-between border-t border-[#292b31] px-1 py-7 text-sm md:mt-20">
+            <span className="font-mono text-xs uppercase tracking-[0.12em] text-zinc-600">
+              Derek Cook
+            </span>
+            <div className="flex items-center gap-5">
+              <ArrowLink href="https://github.com/derek-cook">GitHub</ArrowLink>
               <ArrowLink href="https://www.linkedin.com/in/derekcook33/">
                 LinkedIn
               </ArrowLink>
