@@ -74,7 +74,6 @@ export const DemoChat: React.FC<DemoChatProps> = ({ disabled = false }) => {
             member.clientId !== channel.clientId && (
               <Cursor
                 key={member.clientId}
-                label={member.clientId}
                 location={location[member.clientId]}
                 text={memberMessages[member.clientId]}
               />

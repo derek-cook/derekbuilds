@@ -1,12 +1,11 @@
 import { MessageBubble } from "~/components/MessageBubble";
 
 type CursorProps = {
-  label: string;
   location?: [number, number];
   children?: React.ReactNode;
   text?: string;
 };
-const Cursor: React.FC<CursorProps> = ({ label, location, children, text }) => {
+const Cursor: React.FC<CursorProps> = ({ location, children, text }) => {
   return location ? (
     <div
       style={{
@@ -17,7 +16,6 @@ const Cursor: React.FC<CursorProps> = ({ label, location, children, text }) => {
       className="linear sage-other-cursor pointer-events-none transition-all duration-150"
     >
       <div className="relative left-4 w-max">
-        <p className="py-1 text-xs text-gray-400">{label}</p>
         {text && (
           <MessageBubble
             isOwn={false}
