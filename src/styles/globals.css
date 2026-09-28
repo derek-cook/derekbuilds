@@ -56,6 +56,22 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+.signal-card {
+  border: 1px solid #2b2d33;
+  border-radius: 1.05rem;
+  background: #111218;
+}
+
+.signal-cursor-grid {
+  background-image: linear-gradient(to right, #d8ff48 1px, transparent 1px),
+    linear-gradient(to bottom, #d8ff48 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
 .noise:before {
   animation: grain 8s steps(10) infinite;
   background-image: url("http://assets.iceable.com/img/noise-transparent.png");
