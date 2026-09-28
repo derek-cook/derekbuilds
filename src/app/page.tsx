@@ -112,8 +112,8 @@ export default function Home() {
                 <p className="relative z-10 px-2 pt-1 text-sm leading-6 text-zinc-400">
                   Move between the two fields. Click or tap to chat.
                 </p>
-                <div className="relative z-10 mt-4 grid h-[335px] gap-3 sm:grid-cols-2">
-                  <div className="overflow-hidden rounded-xl border border-[#34363d] bg-[#0e0f13]/90">
+                <div className="relative z-10 mt-4 grid h-[335px] grid-rows-2 gap-3 sm:grid-cols-2 sm:grid-rows-1">
+                  <div className="min-h-0 overflow-hidden rounded-xl border border-[#34363d] bg-[#0e0f13]/90">
                     <div className="border-b border-[#2a2c31] px-3 py-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-zinc-600">
                       Field A
                     </div>
@@ -123,7 +123,7 @@ export default function Home() {
                       </DemoAppA>
                     </div>
                   </div>
-                  <div className="overflow-hidden rounded-xl border border-[#34363d] bg-[#0e0f13]/90">
+                  <div className="min-h-0 overflow-hidden rounded-xl border border-[#34363d] bg-[#0e0f13]/90">
                     <div className="border-b border-[#2a2c31] px-3 py-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-zinc-600">
                       Field B
                     </div>
