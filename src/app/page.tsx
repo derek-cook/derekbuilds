@@ -12,6 +12,13 @@ const DemoChat = dynamic(
 
 const experience = [
   {
+    company: "Qualia",
+    role: "Senior Software Engineer, Full Stack",
+    dates: "Mar 2026 — Present",
+    summary:
+      "Build Clear, an agentic web app and browser extension, including agent actions, workflows, tool calls, tests, prompt evaluations, and Langfuse quality metrics. Reduced email-drafting agent latency by 30% and token use by roughly 40% per execution.",
+  },
+  {
     company: "HubSpot",
     role: "Senior Software Engineer",
     dates: "Dec 2022 — Jun 2025",
@@ -187,8 +194,8 @@ export default function Home() {
                 <li className="grid grid-cols-[2rem_1fr] gap-2 border-t border-[#292b31] py-4 text-sm leading-6">
                   <span className="font-mono text-xs text-[#d8ff48]">03</span>
                   <span>
-                    AI-assisted development with Cursor, Claude, and MCP
-                    workflows.
+                    At Qualia, reduced email-drafting agent latency by 30% and
+                    token use by roughly 40% per execution.
                   </span>
                 </li>
               </ol>
