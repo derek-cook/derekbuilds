@@ -1,2 +1,12 @@
-# My personal website (derekbuilds.ai)
-This is a collection of a few of my projects. I recently migrated them from their separate repos into this one, so things are still very messy.
+# derekbuilds.ai
+
+Derek Cook's portfolio, built with Next.js, React, TypeScript, and Tailwind CSS.
+
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+Set `NEXT_PUBLIC_WEBSITE_URL` in `.env.local` for metadata, robots, and sitemap URLs.

@@ -7,16 +7,12 @@ import { useKeyCommand } from "../hooks/useKeyCommand";
 import { HoverInput } from "./HoverInput";
 
 type DemoChatProps = {
-  username?: string;
   disabled?: boolean;
 };
 
 type DemoState = Record<string, [number, number]>;
 
-export const DemoChat: React.FC<DemoChatProps> = ({
-  username,
-  disabled = false,
-}) => {
+export const DemoChat: React.FC<DemoChatProps> = ({ disabled = false }) => {
   const [location, setLocation] = useState<DemoState>({});
   const [memberMessages, setMemberMessages] = useState<Record<string, string>>(
     {},
@@ -43,9 +39,6 @@ export const DemoChat: React.FC<DemoChatProps> = ({
 
   const { isEnabled } = useKeyCommand({
     ref: boxRef,
-    onKeydown() {
-      console.log("KEYDOWN");
-    },
     onClose() {
       setMessage("");
       channel?.trigger("onmessage", "");
@@ -81,7 +74,6 @@ export const DemoChat: React.FC<DemoChatProps> = ({
             member.clientId !== channel.clientId && (
               <Cursor
                 key={member.clientId}
-                label={member.clientId}
                 location={location[member.clientId]}
                 text={memberMessages[member.clientId]}
               />

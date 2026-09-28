@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is Derek Cook's personal portfolio website (`derekbuilds.ai`) built with Next.js 14 App Router, TypeScript, and the T3 Stack. The site showcases projects and includes advanced features like AI-powered resume assistance and real-time collaboration demos.
+This is Derek Cook's personal portfolio website (`derekbuilds.ai`) built with the Next.js 16 App Router, React 19, and TypeScript. The site presents selected AI work and experience and includes a real-time cursor demo.
 
 ## Common Commands
 
@@ -16,82 +16,52 @@ npm run lint         # Run ESLint
 npm run start        # Start production server
 ```
 
-**Database:**
-```bash
-npm run db:push      # Push Prisma schema changes to database
-npm run db:studio    # Open Prisma Studio for database management
-```
-
-**AI Features:**
-```bash
-npm run generate-embeddings-supabase  # Index documents for vector search
-```
-
 ## Architecture
 
 **Tech Stack:**
-- Next.js 14 with App Router
+- Next.js 16 with App Router and React 19
 - TypeScript with strict mode
-- Tailwind CSS + shadcn/ui components
-- Prisma ORM with SQLite
-- Clerk authentication
-- tRPC for type-safe APIs
-- OpenAI API for AI features
+- Tailwind CSS
 - Custom real-time collaboration system (WebSocket-based)
 
 **Key Directory Structure:**
 - `src/app/` - App Router pages and API routes
-- `src/components/` - React components (includes shadcn/ui in `ui/` subdirectory)
+- `src/components/` - Shared React components
 - `src/lib/` - Utility libraries and configurations
-- `src/server/` - tRPC routers and server-side code
-- `src/scripts/` - Utility scripts (including AI embedding generation)
 
 **Configuration Files:**
 - `src/env.mjs` - Environment variable validation with Zod
-- `components.json` - shadcn/ui configuration (uses "new-york" style)
-- `kirimase.config.json` - T3 stack scaffolding configuration
-- `prisma/schema.prisma` - Database schema
 
 ## Key Features
-
-**AI Q&A System (`src/app/api/qa/route.ts`):**
-- Vector search integration with Supabase
-- OpenAI API for generating responses about Derek's experience
-- Streaming responses for real-time chat
 
 **Real-time Collaboration (`src/lib/realtime/`):**
 - Custom WebSocket implementation with live cursors
 - Channel-based communication system
 - Multiple demo applications for testing
 
-**Authentication:**
-- Clerk integration with middleware protection
-- Public routes: homepage, AI endpoints
-- Protected routes: account management, pools
-
 ## Development Patterns
 
 **Component Architecture:**
-- Uses shadcn/ui base components with Radix UI primitives
 - Custom components follow Tailwind utility-first approach
 - Path aliases configured (`~/` points to `src/`)
 
 **API Patterns:**
-- tRPC for type-safe client-server communication
-- Next.js API routes for external integrations (AI, webhooks)
-- Zod for runtime validation
+- Zod for environment validation
 
 **Styling:**
-- CSS custom properties for theming (light/dark mode support)
-- Responsive design with container queries
-- Bento grid layout for project showcases
+- Fixed dark visual theme
+- Responsive grid layout
 
 ## Environment Setup
 
-Required environment variables are validated in `src/env.mjs`. Key integrations include:
-- Clerk (authentication)
-- OpenAI API (AI features)
-- Supabase (vector storage)
-- Ably (real-time features)
+`NEXT_PUBLIC_WEBSITE_URL` is validated in `src/env.mjs` and is used for metadata, robots, and sitemap URLs.
 
-The project uses SQLite for local development with Prisma managing the database schema.
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

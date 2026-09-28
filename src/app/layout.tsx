@@ -1,14 +1,9 @@
 import "~/styles/globals.css";
 
 import { Inter } from "next/font/google";
-import { cookies } from "next/headers";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-import { TRPCReactProvider } from "~/trpc/react";
-import { ClerkProvider } from "@clerk/nextjs";
-import { ThemeProvider } from "~/components/ThemeProvider";
-import { cn } from "~/lib/utils";
 import { env } from "~/env.mjs";
 
 const inter = Inter({
@@ -18,12 +13,13 @@ const inter = Inter({
 
 export const metadata = {
   title: "Derek Cook",
-  description: "A collection of software concepts and projects.",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  description:
+    "Frontend-focused software engineer building realtime systems, accessible products, and high-traffic web apps.",
   metadataBase: new URL(env.NEXT_PUBLIC_WEBSITE_URL),
   openGraph: {
     title: "Derek Cook",
-    description: "A collection of software concepts and projects.",
+    description:
+      "Frontend-focused software engineer building realtime systems, accessible products, and high-traffic web apps.",
     url: env.NEXT_PUBLIC_WEBSITE_URL,
     siteName: "Derek Cook",
     type: "website",
@@ -40,25 +36,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn("bg-background font-sans antialiased", inter.variable)}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ClerkProvider>
-            <TRPCReactProvider cookies={cookies().toString()}>
-              <main className="flex h-dvh flex-col">{children}</main>
-              <footer className=""></footer>
-              <Analytics />
-              <SpeedInsights />
-            </TRPCReactProvider>
-          </ClerkProvider>
-        </ThemeProvider>
+    <html lang="en">
+      <body className={`bg-[#0b0c10] font-sans antialiased ${inter.variable}`}>
+        <div className="flex min-h-dvh flex-col">{children}</div>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
