@@ -1,18 +1,18 @@
-import dynamic from "next/dynamic";
+import AblyClientProvider from "~/components/realtime/DynamicAblyProvider";
+import { checkAuth } from "~/lib/auth/utils";
 
-const DynamicAblyProvider = dynamic(
-  () => import("~/components/realtime/ClientProviders"),
-  {
-    ssr: false,
-  },
-);
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  await checkAuth();
 
-export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <DynamicAblyProvider>
+    <AblyClientProvider>
       <div className="flex h-full flex-col justify-items-center bg-noisyGradient bg-cover">
         {children}
       </div>
-    </DynamicAblyProvider>
+    </AblyClientProvider>
   );
 }

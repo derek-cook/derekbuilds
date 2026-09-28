@@ -4,22 +4,27 @@ import { Button } from "~/components/ui/Button";
 import { ChevronLeftIcon, PaperPlaneIcon } from "@radix-ui/react-icons";
 import { Input } from "~/components/ui/Input";
 import { MessageBubble } from "~/components/MessageBubble";
-import { useEffect, useRef, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
 import { useChannel } from "ably/react";
 import { type Types } from "ably";
 import { useAuth } from "@clerk/nextjs";
 
 const MAX_CHAR_COUNT = 50;
 
-export default function Pool({ params }: { params: { topic: string } }) {
+export default function Pool({
+  params,
+}: {
+  params: Promise<{ topic: string[] }>;
+}) {
+  const { topic } = use(params);
+  const channelName = topic.map(decodeURIComponent).join("/");
   const router = useRouter();
   const { userId } = useAuth();
   const [ownText, setOwnText] = useState("");
   const [messageHistory, setMessageHistory] = useState<Types.Message[]>([]);
   const msgContainerRef = useRef<HTMLDivElement>(null);
 
-  const { channel } = useChannel(params.topic, (message) => {
-    console.log({ message });
+  const { channel } = useChannel(channelName, (message) => {
     setMessageHistory((prev) => [message, ...prev]);
   });
 
@@ -29,7 +34,6 @@ export default function Pool({ params }: { params: { topic: string } }) {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    console.log(value);
     // if (value.length > MAX_CHAR_COUNT) {
     // value = value.slice(1, value.length); // trim from the start
     // }
@@ -68,7 +72,7 @@ export default function Pool({ params }: { params: { topic: string } }) {
           >
             <ChevronLeftIcon className="h-8 w-8" />
           </Button>
-          <h1 className="text-xl">{decodeURI(params.topic)}</h1>
+          <h1 className="text-xl">{channelName}</h1>
         </div>
         <div
           id="messages-container"

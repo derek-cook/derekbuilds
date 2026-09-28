@@ -1,9 +1,6 @@
 import { ImageResponse } from "next/og";
 import { env } from "~/env.mjs";
 
-// Route segment config
-export const runtime = "edge";
-
 const size = {
   width: 1200,
   height: 630,
@@ -35,6 +32,8 @@ export async function GET() {
           padding: "3rem 3rem",
         }}
       >
+        {/* next/image cannot render inside ImageResponse. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           alt="pool"
           style={{

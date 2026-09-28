@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 export type AuthSession = {
@@ -11,15 +11,14 @@ export type AuthSession = {
   } | null;
 };
 
-export const getUserAuth = () => {
+export const getUserAuth = async () => {
   // find out more about setting up 'sessionClaims' (custom sessions) here: https://clerk.com/docs/backend-requests/making/custom-session-token
-  const { userId, sessionClaims } = auth();
+  const { userId, sessionClaims } = await auth();
   if (userId) {
     return {
       session: {
         user: {
           id: userId,
-          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
           name: `${sessionClaims?.firstName} ${sessionClaims?.lastName}`,
           email: sessionClaims?.email,
         },
@@ -30,7 +29,7 @@ export const getUserAuth = () => {
   }
 };
 
-export const checkAuth = () => {
-  const { userId } = auth();
+export const checkAuth = async () => {
+  const { userId } = await auth();
   if (!userId) redirect("/sign-in");
 };

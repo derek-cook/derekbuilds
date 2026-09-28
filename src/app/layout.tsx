@@ -1,11 +1,9 @@
 import "~/styles/globals.css";
 
 import { Inter } from "next/font/google";
-import { cookies } from "next/headers";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-import { TRPCReactProvider } from "~/trpc/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "~/components/ThemeProvider";
 import { cn } from "~/lib/utils";
@@ -53,12 +51,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ClerkProvider>
-            <TRPCReactProvider cookies={cookies().toString()}>
-              <main className="flex h-dvh flex-col">{children}</main>
-              <footer className=""></footer>
-              <Analytics />
-              <SpeedInsights />
-            </TRPCReactProvider>
+            <div className="flex min-h-dvh flex-col">{children}</div>
+            <Analytics />
+            <SpeedInsights />
           </ClerkProvider>
         </ThemeProvider>
       </body>

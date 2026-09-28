@@ -1,5 +1,18 @@
-import throttle from "lodash/throttle";
 import { Connection } from "./Connection";
+
+const throttle = <TArgs extends unknown[]>(
+  callback: (...args: TArgs) => void,
+  wait: number,
+) => {
+  let lastRun = 0;
+
+  return (...args: TArgs) => {
+    const now = Date.now();
+    if (now - lastRun < wait) return;
+    lastRun = now;
+    callback(...args);
+  };
+};
 
 export type ChannelMessage = {
   event: string;
@@ -20,6 +33,7 @@ export class Channel {
   listeners = new Set<(message: ChannelMessage) => void>();
   members: MemberData[] = [];
   memberMap = new Map<string, MemberData>();
+  onEmpty?: () => void;
   heartbeat = 1;
   heartbeatIntv = setInterval(() => {
     this.trigger("_heartbeat");
@@ -32,13 +46,15 @@ export class Channel {
     this.heartbeat--;
   }, 1000);
 
-  constructor(channelId: string, clientId: string) {
+  constructor(channelId: string, clientId: string, onEmpty?: () => void) {
     this.channelId = channelId;
     this.clientId = clientId;
+    this.onEmpty = onEmpty;
     this.connect();
   }
 
   connect() {
+    this.connection?.close();
     this.connection = new Connection(this.channelId, this.clientId);
     this.connection.websocket.addEventListener("message", (e: MessageEvent) => {
       this.heartbeat = 1;
@@ -58,31 +74,34 @@ export class Channel {
   }
 
   disconnect() {
-    this.connection?.websocket.send(
-      JSON.stringify({
-        event: "_leave",
-        clientId: this.clientId,
-      }),
-    );
+    if (this.connection?.getStatus() === "OPEN") {
+      this.connection.websocket.send(
+        JSON.stringify({
+          event: "_leave",
+          clientId: this.clientId,
+        }),
+      );
+    }
     clearInterval(this.heartbeatIntv);
     clearInterval(this.reconnectIntv);
     this.connection?.close();
   }
 
   subscribe(listener: (e: ChannelMessage) => void) {
-    const messageListener = (message: ChannelMessage) => {
-      listener(message);
-    };
-    this.listeners.add(messageListener);
+    this.listeners.add(listener);
     return () => {
       this.listeners.delete(listener);
       if (this.listeners.size === 0) {
-        this.disconnect();
+        queueMicrotask(() => {
+          if (this.listeners.size === 0) {
+            this.disconnect();
+            this.onEmpty?.();
+          }
+        });
       }
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   trigger = throttle(
     (event: string, data?: unknown) => {
       if (this.connection?.getStatus() === "OPEN") {
@@ -92,11 +111,8 @@ export class Channel {
           data,
         };
         this.connection?.websocket.send(JSON.stringify(message));
-      } else {
-        console.error("Cannot trigger, websocket not open");
       }
     },
     80,
-    { leading: true },
   );
 }

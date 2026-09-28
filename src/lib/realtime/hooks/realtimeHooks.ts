@@ -1,40 +1,23 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { Realtime } from "../client/Realtime";
+import { useContext, useEffect, useEffectEvent, useMemo } from "react";
 import { RealtimeContext } from "../components/RealtimeProvider";
 import { type ChannelMessage } from "../client/Channel";
-
-export const useRealtime = (apiKey: string, clientId: string) => {
-  const [realtime, setRealtime] = useState<Realtime | null>(null);
-  useEffect(() => {
-    const realtimeInstance = new Realtime({ apiKey, clientId });
-    setRealtime(realtimeInstance);
-    return () => {
-      realtimeInstance.channels.forEach((channel) => {
-        channel.connection?.websocket.close();
-      });
-    };
-  }, [apiKey, clientId]);
-  return realtime;
-};
 
 export const useChannel = (
   channelId: string,
   listener: (message: ChannelMessage) => void,
 ) => {
   const realtime = useContext(RealtimeContext);
-  const channel = realtime?.getChannel(channelId);
-  const listenerRef = useRef(listener);
-  listenerRef.current = listener;
+  const channel = useMemo(
+    () => realtime?.getChannel(channelId),
+    [channelId, realtime],
+  );
+  const onMessage = useEffectEvent(listener);
 
   useEffect(() => {
-    const channelListener = (msg: ChannelMessage) => listenerRef.current(msg);
+    const channelListener = (msg: ChannelMessage) => onMessage(msg);
     const unsubscribe = channel?.subscribe(channelListener);
-    return () => {
-      if (unsubscribe) {
-        unsubscribe();
-      }
-    };
-  }, [channel, channelId, realtime]);
+    return unsubscribe;
+  }, [channel]);
 
   return channel;
 };

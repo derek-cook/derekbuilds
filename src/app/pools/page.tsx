@@ -1,7 +1,7 @@
 import { Button } from "~/components/ui/Button";
 import { Input } from "~/components/ui/Input";
 import { redirect } from "next/navigation";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { openai } from "~/lib/openai";
 import { cookies } from "next/headers";
 import { createClient } from "~/lib/supabase/server";
@@ -16,12 +16,11 @@ import {
 export default function Pools() {
   async function joinTopic(formData: FormData) {
     "use server";
-    const { getToken } = auth();
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    const userId = auth().userId ?? generateUsername();
+    const { getToken, userId: authenticatedUserId } = await auth();
+    const userId = authenticatedUserId ?? generateUsername();
 
     const token = (await getToken({ template: "supabase" }))!;
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const supabaseClient = createClient(cookieStore, token);
 
     const topic = formData.get("topic") as string;

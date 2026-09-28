@@ -1,4 +1,4 @@
-import { forwardRef, useEffect } from "react";
+import { forwardRef, useEffect, useEffectEvent } from "react";
 
 type HoverInputProps = {
   location: [number, number];
@@ -9,9 +9,11 @@ type HoverInputProps = {
 
 export const HoverInput = forwardRef<HTMLInputElement, HoverInputProps>(
   ({ value: value, onChange, location: [x, y], isEnabled }, ref) => {
+    const resetValue = useEffectEvent(() => onChange(""));
+
     useEffect(() => {
       if (isEnabled) {
-        onChange("");
+        resetValue();
       }
     }, [isEnabled]);
 
@@ -36,9 +38,6 @@ export const HoverInput = forwardRef<HTMLInputElement, HoverInputProps>(
           size={value?.length ? value.length + 1 : 12}
           value={value}
           onChange={(e) => handleChange(e.target.value)}
-          onFocus={() => {
-            console.log("FOCUS");
-          }}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               onChange("");

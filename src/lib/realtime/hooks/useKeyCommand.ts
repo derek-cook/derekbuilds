@@ -1,31 +1,32 @@
-import { useState, useEffect, type RefObject } from "react";
+import { useState, useEffect, useEffectEvent, type RefObject } from "react";
 
 type Opts = {
-  ref: RefObject<HTMLDivElement>;
+  ref: RefObject<HTMLDivElement | null>;
   onKeydown?: () => void;
   onClose?: () => void;
 };
 
 export const useKeyCommand = ({ ref, onKeydown, onClose }: Opts) => {
   const [isEnabled, setIsEnabled] = useState(false);
+  const handleKeydown = useEffectEvent(() => onKeydown?.());
+  const handleClose = useEffectEvent(() => onClose?.());
+
   useEffect(() => {
     const keyListener = (e: KeyboardEvent) => {
       const { key } = e;
-      console.log({ key });
       if (key === "/") {
         setIsEnabled(true);
       } else if (key === "Escape") {
         // ESC is close key
         setIsEnabled(false);
-        onClose?.();
+        handleClose();
       }
-      onKeydown?.();
+      handleKeydown();
     };
 
-    const clickListener = (e: MouseEvent) => {
-      console.log("CLICKED");
+    const clickListener = () => {
       setIsEnabled((prev) => !prev);
-      onClose?.();
+      handleClose();
     };
 
     const currRef = ref.current;
@@ -33,10 +34,7 @@ export const useKeyCommand = ({ ref, onKeydown, onClose }: Opts) => {
     if (currRef) {
       currRef.addEventListener("keydown", keyListener);
       currRef.addEventListener("click", clickListener);
-      // currRef.addEventListener("", clickListener);
-
       return () => {
-        // ref.current?.removeEventListener('keydown', keyListener);
         currRef.removeEventListener("keydown", keyListener);
         currRef.removeEventListener("click", clickListener);
       };

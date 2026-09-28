@@ -2,8 +2,8 @@
 
 import dynamic from "next/dynamic";
 
-const DynamicAblyProvider = dynamic(() => import("./ClientProviders"), {
+const AblyClientProvider = dynamic(() => import("./ClientProviders"), {
   ssr: false,
 });
 
-export default DynamicAblyProvider;
+export default AblyClientProvider;
