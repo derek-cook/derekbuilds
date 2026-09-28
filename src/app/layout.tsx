@@ -4,9 +4,6 @@ import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-import { ClerkProvider } from "@clerk/nextjs";
-import { ThemeProvider } from "~/components/ThemeProvider";
-import { cn } from "~/lib/utils";
 import { env } from "~/env.mjs";
 
 const inter = Inter({
@@ -18,7 +15,6 @@ export const metadata = {
   title: "Derek Cook",
   description:
     "Frontend-focused software engineer building realtime systems, accessible products, and high-traffic web apps.",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
   metadataBase: new URL(env.NEXT_PUBLIC_WEBSITE_URL),
   openGraph: {
     title: "Derek Cook",
@@ -40,22 +36,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn("bg-background font-sans antialiased", inter.variable)}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ClerkProvider>
-            <div className="flex min-h-dvh flex-col">{children}</div>
-            <Analytics />
-            <SpeedInsights />
-          </ClerkProvider>
-        </ThemeProvider>
+    <html lang="en">
+      <body className={`bg-[#0b0c10] font-sans antialiased ${inter.variable}`}>
+        <div className="flex min-h-dvh flex-col">{children}</div>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

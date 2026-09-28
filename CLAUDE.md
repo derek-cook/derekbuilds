@@ -21,20 +21,16 @@ npm run start        # Start production server
 **Tech Stack:**
 - Next.js 16 with App Router and React 19
 - TypeScript with strict mode
-- Tailwind CSS + shadcn/ui components
-- Clerk authentication
-- OpenAI and Supabase for topic matching in the protected pools experiment
-- Ably for pool chat
+- Tailwind CSS
 - Custom real-time collaboration system (WebSocket-based)
 
 **Key Directory Structure:**
 - `src/app/` - App Router pages and API routes
-- `src/components/` - React components (includes shadcn/ui in `ui/` subdirectory)
+- `src/components/` - Shared React components
 - `src/lib/` - Utility libraries and configurations
 
 **Configuration Files:**
 - `src/env.mjs` - Environment variable validation with Zod
-- `components.json` - shadcn/ui configuration (uses "new-york" style)
 
 ## Key Features
 
@@ -43,34 +39,22 @@ npm run start        # Start production server
 - Channel-based communication system
 - Multiple demo applications for testing
 
-**Authentication:**
-- Clerk integration with a narrowly scoped proxy and resource-level checks
-- Public routes: homepage, sign-in, sign-up, and Open Graph image
-- Protected routes: account management, pools
-
 ## Development Patterns
 
 **Component Architecture:**
-- Uses shadcn/ui base components with Radix UI primitives
 - Custom components follow Tailwind utility-first approach
 - Path aliases configured (`~/` points to `src/`)
 
 **API Patterns:**
-- Next.js route handlers for external integrations
 - Zod for environment validation
 
 **Styling:**
-- CSS custom properties for theming (light/dark mode support)
-- Responsive design with container queries
-- Bento grid layout for project showcases
+- Fixed dark visual theme
+- Responsive grid layout
 
 ## Environment Setup
 
-Required environment variables are validated in `src/env.mjs`. Key integrations include:
-- Clerk (authentication)
-- OpenAI API (AI features)
-- Supabase (vector storage)
-- Ably (real-time features)
+`NEXT_PUBLIC_WEBSITE_URL` is validated in `src/env.mjs` and is used for metadata, robots, and sitemap URLs.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
