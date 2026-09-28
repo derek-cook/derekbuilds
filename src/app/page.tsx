@@ -72,32 +72,12 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#0b0c10] text-[#f4f4ef] selection:bg-[#d8ff48] selection:text-[#111216]">
       <div className="mx-auto w-full max-w-[1180px] px-5 pb-14 pt-5 sm:px-7">
-        <nav
-          className="flex min-h-14 items-center justify-between border-b border-[#292b30]"
-          aria-label="Primary navigation"
-        >
-          <Link href="/" className="text-sm font-bold tracking-[-0.04em]">
-            Derek Cook
-          </Link>
-          <div className="flex items-center gap-5 text-sm text-zinc-400 sm:gap-7">
-            <a
-              className="hidden transition-colors hover:text-white sm:inline"
-              href="#experience"
-            >
-              Experience
-            </a>
-            <a
-              className="transition-colors hover:text-[#d8ff48]"
-              href="mailto:derekcdev@gmail.com"
-            >
-              Email <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </nav>
-
-        <header className="grid gap-9 pb-14 pt-16 md:grid-cols-[1.35fr_.65fr] md:pb-16 md:pt-24">
+        <header className="grid gap-9 pb-14 pt-16 md:grid-cols-[1.35fr_.65fr] md:pb-16 md:pt-16">
           <div>
-            <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-zinc-500">
+            <p className="mb-2 text-xl font-bold tracking-[-0.04em]">
+              Derek Cook
+            </p>
+            <p className="border-b border-[#292b31] pb-2 font-mono text-xs font-medium uppercase tracking-[0.14em] text-zinc-500">
               Software engineer · Los Angeles
             </p>
             <h1 className="mt-5 max-w-4xl text-[clamp(3.4rem,8vw,6.9rem)] font-semibold leading-[0.9] tracking-[-0.068em]">
@@ -111,8 +91,8 @@ export default function Home() {
               Open to new opportunities
             </p>
             <p>
-              Frontend-focused engineer with 7 years of experience building
-              realtime systems, accessible products, and high-traffic web apps.
+              Software Engineer with 8 years of experience building enterprise
+              web apps, with an emphasis on realtime and advanced frontends.
             </p>
           </div>
         </header>
@@ -170,12 +150,8 @@ export default function Home() {
                   id="ai-heading"
                   className="max-w-sm text-4xl font-semibold leading-[1.04] tracking-[-0.05em]"
                 >
-                  Useful AI, grounded in product.
+                  Practical AI projects
                 </h2>
-                <p className="mt-4 max-w-md leading-7 text-zinc-400">
-                  Experiments that turn retrieval, context, and interface design
-                  into something people can actually use.
-                </p>
               </div>
               <ol className="mt-auto px-6 pb-6 pt-5">
                 <li className="grid grid-cols-[2rem_1fr] gap-2 border-t border-[#292b31] py-4 text-sm leading-6">
