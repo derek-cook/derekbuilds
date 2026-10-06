@@ -60,10 +60,10 @@ export class Channel {
       this.heartbeat = 1;
       const channelMessage = JSON.parse(e.data as string) as ChannelMessage;
       if (channelMessage.event === "_join") {
-        this.memberMap.set(
-          channelMessage.clientId,
-          channelMessage.data as MemberData,
-        );
+        this.memberMap.set(channelMessage.clientId, {
+          ...(channelMessage.data as Partial<MemberData> | undefined),
+          clientId: channelMessage.clientId,
+        });
         this.members = [...this.memberMap.values()];
       } else if (channelMessage.event === "_leave") {
         this.memberMap.delete(channelMessage.clientId);
@@ -102,17 +102,16 @@ export class Channel {
     };
   }
 
-  trigger = throttle(
-    (event: string, data?: unknown) => {
-      if (this.connection?.getStatus() === "OPEN") {
-        const message: ChannelMessage = {
-          clientId: this.clientId,
-          event,
-          data,
-        };
-        this.connection?.websocket.send(JSON.stringify(message));
-      }
-    },
-    80,
-  );
+  trigger = (event: string, data?: unknown) => {
+    if (this.connection?.getStatus() === "OPEN") {
+      const message: ChannelMessage = {
+        clientId: this.clientId,
+        event,
+        data,
+      };
+      this.connection.websocket.send(JSON.stringify(message));
+    }
+  };
+
+  triggerThrottled = throttle(this.trigger, 80);
 }

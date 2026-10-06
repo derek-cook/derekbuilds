@@ -6,6 +6,7 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "eslint .",
+    "test": "node --no-warnings --experimental-transform-types --experimental-loader ./test/ts-loader.mjs --test test/**/*.test.mts",
     "start": "next start"
   },
   "dependencies": {

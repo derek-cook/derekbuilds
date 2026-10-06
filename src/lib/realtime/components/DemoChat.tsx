@@ -53,7 +53,7 @@ export const DemoChat: React.FC<DemoChatProps> = ({ disabled = false }) => {
     ];
     setCoords(coords);
 
-    channel?.trigger("pointermove", coords);
+    channel?.triggerThrottled("pointermove", coords);
   };
 
   const handleMessageChange = (value: string) => {
