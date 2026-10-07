@@ -1,7 +1,6 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import { DemoAppA, DemoAppB } from "~/lib/realtime/components/DemoApp";
 
 const DemoChat = dynamic(
@@ -41,93 +40,144 @@ const experience = [
   },
 ];
 
-function ArrowLink({
-  href,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) {
-  const isExternal = href.startsWith("http");
-
-  return (
-    <Link
-      className="group inline-flex items-center gap-1.5 text-zinc-400 transition-colors hover:text-[#d8ff48]"
-      href={href}
-      target={isExternal ? "_blank" : undefined}
-      rel={isExternal ? "noreferrer" : undefined}
-    >
-      {children}
-      <span
-        aria-hidden="true"
-        className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-      >
-        ↗
-      </span>
-    </Link>
-  );
-}
+const capabilities = [
+  {
+    title: "Advanced frontends",
+    tags: "Interfaces / Performance / Accessibility",
+    description:
+      "Clear, responsive interfaces for complex products. Eight years building enterprise web apps, from high-traffic account experiences to editors and omnichannel help desks.",
+  },
+  {
+    title: "Realtime systems",
+    tags: "Presence / Collaboration / Messaging",
+    description:
+      "Shared experiences that respond in the moment. Custom channel-based communication, live cursors, and realtime product features built to feel immediate.",
+  },
+  {
+    title: "Applied AI",
+    tags: "Agents / Workflows / Evaluations",
+    description:
+      "AI that does useful work. Agent actions, retrieval, prompt evaluations, and quality metrics, with attention to latency and token efficiency.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#0b0c10] text-[#f4f4ef] selection:bg-[#d8ff48] selection:text-[#111216]">
-      <div className="mx-auto w-full max-w-[1180px] px-5 pb-14 pt-5 sm:px-7">
-        <header className="grid gap-9 pb-14 pt-16 md:grid-cols-[1.35fr_.65fr] md:pb-16 md:pt-16">
-          <div>
-            <p className="mb-2 text-xl font-bold tracking-[-0.04em]">
-              Derek Cook
-            </p>
-            <p className="border-b border-[#292b31] pb-2 font-mono text-xs font-medium uppercase tracking-[0.14em] text-zinc-500">
-              Software engineer · Los Angeles
-            </p>
-            <h1 className="mt-5 max-w-4xl text-[clamp(3.4rem,8vw,6.9rem)] font-semibold leading-[0.9] tracking-[-0.068em]">
-              I build interfaces that feel{" "}
-              <span className="text-[#d8ff48]">fast, clear, and alive.</span>
+    <div className="portfolio" id="top">
+      <header className="masthead">
+        <a className="wordmark" href="#top">
+          Derek Cook
+        </a>
+        <a
+          className="availability mono"
+          href="https://www.linkedin.com/in/derekcook33/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <span className="status-dot" />
+          Open to new opportunities <span aria-hidden="true">↗</span>
+        </a>
+      </header>
+      <main>
+        <section className="intro-grid" aria-labelledby="intro-heading">
+          <div className="intro-title cell">
+            <p className="mono">01 / Software engineer</p>
+            <h1 id="intro-heading">
+              A thinker.
+              <br />A builder.
             </h1>
-          </div>
-          <div className="max-w-md self-end text-[1.05rem] leading-7 text-zinc-400">
-            <p className="mb-5 flex items-center gap-2 font-mono text-xs text-[#d8ff48]">
-              <span className="h-2 w-2 rounded-full bg-[#d8ff48] shadow-[0_0_0_4px_rgba(216,255,72,0.12)]" />
-              Open to new opportunities
-            </p>
-            <p>
-              Software Engineer with 8 years of experience building enterprise
-              web apps, with an emphasis on realtime and advanced frontends.
+            <p className="mono">
+              Los Angeles / Available for remote collaboration
             </p>
           </div>
-        </header>
-
-        <main>
-          <div className="grid gap-4 lg:grid-cols-[1.12fr_.88fr]">
-            <section
-              className="signal-card overflow-hidden"
-              aria-labelledby="cursor-heading"
-            >
-              <div className="flex items-center justify-between border-b border-[#292b31] px-5 py-4 font-mono text-[0.7rem] font-medium uppercase tracking-[0.12em]">
-                <h2 id="cursor-heading">Live cursor lab</h2>
-                <span className="text-zinc-600">Realtime / 01</span>
-              </div>
-              <div className="relative min-h-[430px] overflow-hidden bg-[radial-gradient(circle_at_70%_30%,rgba(216,255,72,0.1),transparent_34%)] p-3">
-                <div className="signal-cursor-grid pointer-events-none absolute inset-0 opacity-20" />
-                <p className="relative z-10 px-2 pt-1 text-sm leading-6 text-zinc-400">
-                  Move between the two fields. Click or tap to chat.
+          <div className="intro-copy cell">
+            <p className="statement">
+              I build interfaces that feel fast, clear, and alive.
+            </p>
+            <div className="intro-bottom">
+              <p>
+                Eight years building enterprise web apps. My practice moves
+                between advanced frontends, realtime systems, and practical AI —
+                always with a bias toward simplicity and structure.
+              </p>
+              <a className="mono text-link" href="#work">
+                Explore the work ↓
+              </a>
+            </div>
+          </div>
+        </section>
+        <section
+          className="capability-grid"
+          aria-labelledby="capabilities-heading"
+        >
+          <div className="cell section-label">
+            <p className="mono">02 / Capabilities</p>
+            <h2 id="capabilities-heading">
+              From idea
+              <br />
+              to interface.
+            </h2>
+            <p className="muted">Thoughtful systems. Tangible results.</p>
+          </div>
+          <div className="capability-list">
+            {capabilities.map((item, index) => (
+              <details className="capability" key={item.title}>
+                <summary>
+                  <span className="mono index">0{index + 1}</span>
+                  <h3>{item.title}</h3>
+                  <span className="mono tags">{item.tags}</span>
+                  <span className="toggle" aria-hidden="true" />
+                </summary>
+                <p className="capability-description">{item.description}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+        <section id="work" aria-labelledby="work-heading">
+          <div className="section-bar">
+            <h2 id="work-heading">03 / Selected work</h2>
+            <span className="mono">Live experiments / Applied AI</span>
+          </div>
+          <div className="work-grid">
+            <details className="work-cell cursor-work">
+              <summary>
+                <div className="work-art dark-art">
+                  <div className="art-meta mono">
+                    <span>Realtime / Interactive experiment</span>
+                    <span>01</span>
+                  </div>
+                  <div className="poster-title">
+                    Live /<br />
+                    Together.
+                  </div>
+                  <div className="cursor-symbol" aria-hidden="true">
+                    ↖
+                  </div>
+                  <p className="mono">Two fields. One shared moment.</p>
+                </div>
+                <div className="work-caption">
+                  <h3>Live cursor lab</h3>
+                  <span className="toggle" aria-hidden="true" />
+                  <p className="mono">Custom realtime / Presence & messaging</p>
+                </div>
+              </summary>
+              <div className="work-content">
+                <p>
+                  Move between the fields to see your cursor mirrored. Click or
+                  tap a field to chat.
                 </p>
-                <div className="relative z-10 mt-4 grid h-[335px] grid-rows-2 gap-3 sm:grid-cols-2 sm:grid-rows-1">
-                  <div className="min-h-0 overflow-hidden rounded-xl border border-[#34363d] bg-[#0e0f13]/90">
-                    <div className="border-b border-[#2a2c31] px-3 py-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-zinc-600">
-                      Field A
-                    </div>
-                    <div className="h-[calc(100%-33px)]">
+                <div className="demo-fields">
+                  <div className="demo-field">
+                    <p className="mono field-label">Field A / Local</p>
+                    <div className="demo-canvas">
                       <DemoAppA>
                         <DemoChat />
                       </DemoAppA>
                     </div>
                   </div>
-                  <div className="min-h-0 overflow-hidden rounded-xl border border-[#34363d] bg-[#0e0f13]/90">
-                    <div className="border-b border-[#2a2c31] px-3 py-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-zinc-600">
-                      Field B
-                    </div>
-                    <div className="h-[calc(100%-33px)]">
+                  <div className="demo-field">
+                    <p className="mono field-label">Field B / Connected</p>
+                    <div className="demo-canvas">
                       <DemoAppB>
                         <DemoChat />
                       </DemoAppB>
@@ -135,94 +185,146 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </section>
-
-            <section
-              className="signal-card flex flex-col"
-              aria-labelledby="ai-heading"
-            >
-              <div className="flex items-center justify-between border-b border-[#292b31] px-5 py-4 font-mono text-[0.7rem] font-medium uppercase tracking-[0.12em]">
-                <span>Selected AI work</span>
-                <span className="text-zinc-600">Applied / 02</span>
+            </details>
+            <details className="work-cell ai-work">
+              <summary>
+                <div className="work-art red-art">
+                  <div className="art-meta mono">
+                    <span>Applied AI / Selected outcomes</span>
+                    <span>02</span>
+                  </div>
+                  <div className="poster-title">
+                    Less wait.
+                    <br />
+                    More work.
+                  </div>
+                  <div className="metrics">
+                    <span>
+                      −30%<small className="mono">Agent latency</small>
+                    </span>
+                    <span>
+                      −40%<small className="mono">Token use</small>
+                    </span>
+                  </div>
+                </div>
+                <div className="work-caption">
+                  <h3>Practical AI</h3>
+                  <span className="toggle" aria-hidden="true" />
+                  <p className="mono">Agents / Retrieval / Evaluation</p>
+                </div>
+              </summary>
+              <div className="work-content ai-results">
+                <p className="statement">Useful outcomes, measured.</p>
+                <ol>
+                  <li>
+                    <span className="mono index">01</span>
+                    <p>
+                      1st place in a HubSpot AI hackathon for vector search in
+                      Help Desk.
+                    </p>
+                  </li>
+                  <li>
+                    <span className="mono index">02</span>
+                    <p>
+                      RAG portfolio assistant backed by Postgres and pgvector.
+                    </p>
+                  </li>
+                  <li>
+                    <span className="mono index">03</span>
+                    <p>
+                      At Qualia, reduced email-drafting agent latency by 30% and
+                      token use by roughly 40% per execution.
+                    </p>
+                  </li>
+                </ol>
               </div>
-              <div className="px-6 pb-3 pt-8">
-                <h2
-                  id="ai-heading"
-                  className="max-w-sm text-4xl font-semibold leading-[1.04] tracking-[-0.05em]"
-                >
-                  Practical AI projects
-                </h2>
-              </div>
-              <ol className="mb-auto px-6 pb-6 pt-5">
-                <li className="grid grid-cols-[2rem_1fr] gap-2 border-t border-[#292b31] py-4 text-sm leading-6">
-                  <span className="font-mono text-xs text-[#d8ff48]">01</span>
-                  <span>
-                    1st place in a HubSpot AI hackathon for vector search in
-                    Help Desk.
-                  </span>
-                </li>
-                <li className="grid grid-cols-[2rem_1fr] gap-2 border-t border-[#292b31] py-4 text-sm leading-6">
-                  <span className="font-mono text-xs text-[#d8ff48]">02</span>
-                  <span>
-                    RAG portfolio assistant backed by Postgres and pgvector.
-                  </span>
-                </li>
-                <li className="grid grid-cols-[2rem_1fr] gap-2 border-t border-[#292b31] py-4 text-sm leading-6">
-                  <span className="font-mono text-xs text-[#d8ff48]">03</span>
-                  <span>
-                    At Qualia, reduced email-drafting agent latency by 30% and
-                    token use by roughly 40% per execution.
-                  </span>
-                </li>
-              </ol>
-            </section>
+            </details>
           </div>
-
-          <section
-            id="experience"
-            className="signal-card mt-4 px-6 pb-3 pt-8"
-            aria-labelledby="experience-heading"
-          >
-            <h2
-              id="experience-heading"
-              className="mb-7 text-4xl font-semibold tracking-[-0.05em] sm:text-5xl"
-            >
-              Experience
+        </section>
+        <section
+          className="experience-grid"
+          id="experience"
+          aria-labelledby="experience-heading"
+        >
+          <div className="cell section-label">
+            <p className="mono">04 / Experience</p>
+            <h2 id="experience-heading">
+              Built with
+              <br />
+              good teams.
             </h2>
-            {experience.map((job) => (
-              <article
-                key={job.company}
-                className="grid gap-3 border-t border-[#30323a] py-6 md:grid-cols-[1.05fr_.7fr_2fr] md:gap-6"
-              >
-                <h3 className="text-lg font-semibold">
-                  {job.company}
-                  <span className="mt-1 block text-sm font-normal text-zinc-500">
-                    {job.role}
-                  </span>
-                </h3>
-                <p className="font-mono text-xs leading-5 text-zinc-500">
-                  {job.dates}
-                </p>
-                <p className="max-w-2xl leading-7 text-zinc-400">
-                  {job.summary}
-                </p>
-              </article>
+            <p className="muted">Enterprise scale. Attention to detail.</p>
+          </div>
+          <div className="experience-list">
+            {experience.map((job, index) => (
+              <details className="job" key={job.company}>
+                <summary>
+                  <span className="mono index">0{index + 1}</span>
+                  <div>
+                    <h3>{job.company}</h3>
+                    <p className="job-role">{job.role}</p>
+                  </div>
+                  <span className="mono job-dates">{job.dates}</span>
+                  <span className="toggle" aria-hidden="true" />
+                </summary>
+                <p className="job-description">{job.summary}</p>
+              </details>
             ))}
-          </section>
-
-          <footer className="mt-16 flex items-center justify-between border-t border-[#292b31] px-1 py-7 text-sm md:mt-20">
-            <span className="font-mono text-xs uppercase tracking-[0.12em] text-zinc-600">
-              Derek Cook
+          </div>
+        </section>
+        <section className="contact-grid" aria-labelledby="contact-heading">
+          <a
+            className="contact-banner cell"
+            href="https://www.linkedin.com/in/derekcook33/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <p className="mono">05 / Next chapter</p>
+            <h2 id="contact-heading">
+              Let’s build
+              <br />
+              something that
+              <br />
+              matters.
+            </h2>
+            <span className="contact-arrow" aria-hidden="true">
+              ↗
             </span>
-            <div className="flex items-center gap-5">
-              <ArrowLink href="https://github.com/derek-cook">GitHub</ArrowLink>
-              <ArrowLink href="https://www.linkedin.com/in/derekcook33/">
-                LinkedIn
-              </ArrowLink>
+          </a>
+          <div className="contact-info cell">
+            <p className="mono">Have something in mind?</p>
+            <p className="contact-copy">
+              Good work starts
+              <br />
+              with a conversation.
+            </p>
+            <p className="muted">
+              Let’s talk about what you’re building and where I can help.
+            </p>
+            <div className="social-links mono">
+              <a
+                href="https://www.linkedin.com/in/derekcook33/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn ↗
+              </a>
+              <a
+                href="https://github.com/derek-cook"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub ↗
+              </a>
             </div>
-          </footer>
-        </main>
-      </div>
+          </div>
+        </section>
+      </main>
+      <footer className="footer mono">
+        <span>© {new Date().getFullYear()} Derek Cook</span>
+        <span>Built on a grid. Made to connect.</span>
+        <a href="#top">Back to top ↑</a>
+      </footer>
     </div>
   );
 }
