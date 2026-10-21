@@ -43,9 +43,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className="scroll-pt-5 scroll-smooth motion-reduce:scroll-auto"
+    >
       <body
-        className={`font-sans antialiased ${inter.variable} ${anton.variable}`}
+        className={`bg-paper font-sans text-ink antialiased selection:bg-accent selection:text-ink ${inter.variable} ${anton.variable}`}
       >
         <div className="flex min-h-dvh flex-col">{children}</div>
         <Analytics />

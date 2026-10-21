@@ -12,7 +12,21 @@ export default {
       },
     },
     extend: {
+      colors: {
+        paper: "#e8e8e3",
+        ink: "#151515",
+        accent: "#FE2525",
+        muted: "#686864",
+        index: "#e92138",
+        status: "#53e75c",
+      },
       fontFamily: {
+        display: [
+          "var(--font-display)",
+          "Impact",
+          "Arial Narrow",
+          "sans-serif",
+        ],
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
     },
