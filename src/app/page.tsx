@@ -1,4 +1,4 @@
-import { Minus, Plus } from "lucide-react";
+import { ArrowUp, Minus, Plus } from "lucide-react";
 import { CursorLab } from "~/components/CursorLab";
 
 const experience = [
@@ -34,18 +34,15 @@ const experience = [
 
 export default function Home() {
   return (
-    <div className="mx-auto w-full max-w-[1800px] border-2 border-ink" id="top">
-      <header className="border-b-2 border-ink">
+    <div className="mx-auto w-full max-w-[1800px]" id="top">
+      <header className="">
         <div className="flex min-w-0 flex-col justify-center gap-1 px-4 py-3 sm:px-[30px]">
           <a
-            className="self-start text-lg font-semibold tracking-tight focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-accent sm:text-xl"
+            className="self-start text-xl font-semibold tracking-tight focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-accent sm:text-xl"
             href="#top"
           >
             Derek Cook
           </a>
-          {/* <p className="font-mono text-xs uppercase leading-relaxed text-muted">
-            Software Engineer
-          </p> */}
         </div>
       </header>
       <main>
@@ -63,17 +60,22 @@ export default function Home() {
               Live interfaces.
               <br />
             </h1>
-            <div className="flex min-w-0 flex-col gap-6">
+            <div className="flex min-w-0 flex-col gap-12 lg:justify-between lg:self-stretch">
               <p className="text-lg leading-[1.35] tracking-[-0.03em] lg:text-2xl">
                 I build realtime applications that react to real world changes.
               </p>
-              <p className="mt-2 flex items-center gap-2 font-mono text-xs uppercase">
-                <span
-                  className="h-2 w-2 shrink-0 rounded-full bg-status"
-                  aria-hidden="true"
-                />
-                Open to collaboration
-              </p>
+              <div>
+                <p className="flex items-center gap-2 font-mono text-xs uppercase">
+                  <span
+                    className="h-2 w-2 shrink-0 rounded-full bg-status"
+                    aria-hidden="true"
+                  />
+                  Open to collaboration
+                </p>
+                <p className="font-mono text-xs uppercase leading-relaxed ">
+                  Software Engineering // AI // Consultation
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -87,7 +89,7 @@ export default function Home() {
           id="cursor-lab"
           aria-labelledby="cursor-lab-heading"
         >
-          <div className="min-w-0 border-b-2 border-ink px-[22px] py-[26px] sm:px-[30px] sm:py-8 lg:border-b-0 lg:border-r-2">
+          <div className="min-w-0 border-b-2 border-ink px-[22px] py-6 sm:px-[30px] sm:py-7 lg:border-b-0 lg:border-r-2">
             <h2
               id="cursor-lab-heading"
               className="mb-5 font-display text-[clamp(40px,4vw,64px)] font-normal uppercase leading-[1.12] tracking-tight"
@@ -117,29 +119,29 @@ export default function Home() {
           id="experience"
           aria-labelledby="experience-heading"
         >
-          <div className="min-w-0 border-b-2 border-ink px-[22px] py-[26px] sm:px-[30px] sm:py-8 lg:border-b-0 lg:border-r-2">
+          <div className="min-w-0 border-b-2 border-ink px-[22px] py-6 sm:px-[30px] sm:py-7 lg:border-b-0 lg:border-r-2">
             <h2
               id="experience-heading"
               className="mb-5 font-display text-[clamp(40px,4vw,64px)] font-normal uppercase leading-[1.12] tracking-tight"
             >
               Experience
             </h2>
-            <p className="text-[15px] leading-relaxed text-muted">
-              Enterprise scale
+            <p className="font-mono text-[15px] leading-relaxed text-muted">
+              8 years total
             </p>
           </div>
           <div className="min-w-0 divide-y-2 divide-ink">
             {experience.map((job, index) => (
               <details className="group/job" key={job.company}>
                 <summary className="group/summary grid min-h-[90px] cursor-pointer list-none grid-cols-[18px_minmax(0,1fr)_24px] items-center gap-3 p-[22px] focus-visible:outline focus-visible:outline-[3px] focus-visible:-outline-offset-[6px] focus-visible:outline-accent sm:grid-cols-[20px_minmax(0,1fr)_minmax(0,1fr)_24px] sm:gap-4 sm:p-6 [&::-webkit-details-marker]:hidden">
-                  <span className="font-mono text-[11px] uppercase leading-relaxed text-index">
-                    0{index + 1}
-                  </span>
-                  <div>
+                  <div className="col-span-2 grid min-w-0 grid-cols-[18px_minmax(0,1fr)] items-center gap-x-3 sm:grid-cols-[20px_minmax(0,1fr)] sm:gap-x-4">
+                    <span className="font-mono text-[11px] uppercase leading-relaxed text-index">
+                      0{index + 1}
+                    </span>
                     <h3 className="font-display text-[clamp(25px,2.5vw,37px)] font-normal leading-[1.2] tracking-tight">
                       {job.company}
                     </h3>
-                    <p className="mt-[7px] text-[13px] text-muted">
+                    <p className="col-start-2 mt-[7px] text-[13px] text-muted">
                       {job.role}
                     </p>
                   </div>
@@ -147,7 +149,7 @@ export default function Home() {
                     {job.dates}
                   </span>
                   <span
-                    className="relative col-start-3 row-start-1 block h-6 w-6 text-accent sm:col-auto sm:row-auto"
+                    className="relative col-start-3 row-span-2 row-start-1 block h-6 w-6 self-center text-accent sm:col-auto sm:row-auto sm:row-span-1"
                     aria-hidden="true"
                   >
                     <Plus
@@ -168,15 +170,16 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <footer className="grid grid-cols-2 divide-x-2 divide-ink font-mono text-[11px] uppercase">
+      <footer className="grid grid-cols-[minmax(0,1fr)_auto] divide-x-2 divide-ink font-mono text-[11px] uppercase">
         <span className="p-5 sm:px-[30px] sm:py-[26px]">
           © {new Date().getFullYear()} Derek Cook
         </span>
         <a
-          className="flex w-full items-center justify-between bg-accent p-5 font-bold text-ink hover:underline hover:underline-offset-4 focus-visible:outline focus-visible:outline-[3px] focus-visible:-outline-offset-[6px] focus-visible:outline-ink sm:px-[30px] sm:py-[26px]"
+          className="flex items-center gap-2 whitespace-nowrap bg-accent p-5 font-bold text-ink hover:underline hover:underline-offset-4 focus-visible:outline focus-visible:outline-[3px] focus-visible:-outline-offset-[6px] focus-visible:outline-ink sm:px-[30px] sm:py-[26px]"
           href="#top"
         >
-          Back to top ↑
+          Back to top
+          <ArrowUp aria-hidden="true" className="h-3 w-3" strokeWidth={3} />
         </a>
       </footer>
     </div>
