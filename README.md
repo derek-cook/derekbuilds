@@ -13,12 +13,9 @@ Set `NEXT_PUBLIC_WEBSITE_URL` in `.env.local` for metadata, robots, and sitemap 
 
 ## Flight tracker demo
 
-The Flight Tracker section embeds Nexus, which runs as a separate app. Start
-Nexus on port 5173 alongside this site's development server; the iframe defaults
-to `http://localhost:5173/embed/lax` in development.
+The Flight Tracker section embeds Nexus, which runs as a separate app. By
+default, it loads `https://nexus-delta-ruby.vercel.app/embed/lax`.
 
-To use another host, set `NEXUS_EMBED_URL` in `.env.local`. For production, deploy
-Nexus first and set this variable to its HTTPS `/embed/lax` URL before building
-and deploying this site. Nexus must allow framing from the portfolio's origin.
-Rebuild the portfolio after changing the URL because the homepage is prerendered.
-Without a production URL, the section displays an unavailable message.
+To use another host, set `NEXUS_EMBED_URL` in `.env.local` before building. Nexus
+must allow framing from the portfolio's origin. Rebuild the portfolio after
+changing the URL because the homepage is prerendered.
