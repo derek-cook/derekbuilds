@@ -35,10 +35,7 @@ const experience = [
 
 export default function Home() {
   const nexusEmbedUrl =
-    env.NEXUS_EMBED_URL ??
-    (env.NODE_ENV === "development"
-      ? "http://localhost:5173/embed/lax"
-      : undefined);
+    env.NEXUS_EMBED_URL ?? "https://nexus-delta-ruby.vercel.app/embed/lax";
 
   return (
     <div className="mx-auto w-full max-w-[1800px]" id="top">
