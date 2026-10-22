@@ -4,14 +4,39 @@ const throttle = <TArgs extends unknown[]>(
   callback: (...args: TArgs) => void,
   wait: number,
 ) => {
-  let lastRun = 0;
+  let lastRun: number | undefined;
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  let pendingArgs: TArgs | undefined;
 
-  return (...args: TArgs) => {
-    const now = Date.now();
-    if (now - lastRun < wait) return;
-    lastRun = now;
+  const flush = () => {
+    timer = undefined;
+    if (!pendingArgs) return;
+    const args = pendingArgs;
+    pendingArgs = undefined;
+    lastRun = Date.now();
     callback(...args);
   };
+
+  const throttled = (...args: TArgs) => {
+    pendingArgs = args;
+    const remaining = lastRun === undefined ? 0 : wait - (Date.now() - lastRun);
+    if (remaining <= 0) {
+      clearTimeout(timer);
+      flush();
+    } else if (timer === undefined) {
+      // Keep the newest position and deliver it even if movement stops.
+      timer = setTimeout(flush, remaining);
+    }
+  };
+
+  return Object.assign(throttled, {
+    cancel() {
+      clearTimeout(timer);
+      timer = undefined;
+      pendingArgs = undefined;
+      lastRun = undefined;
+    },
+  });
 };
 
 export type ChannelMessage = {
@@ -74,6 +99,7 @@ export class Channel {
   }
 
   disconnect() {
+    this.triggerThrottled.cancel();
     if (this.connection?.getStatus() === "OPEN") {
       this.connection.websocket.send(
         JSON.stringify({
