@@ -1,5 +1,6 @@
-import { ArrowUp, Minus, Plus } from "lucide-react";
+import { ArrowUp, CircleQuestionMark, Minus, Plus } from "lucide-react";
 import { CursorLab } from "~/components/CursorLab";
+import { env } from "~/env.mjs";
 
 const experience = [
   {
@@ -33,6 +34,12 @@ const experience = [
 ];
 
 export default function Home() {
+  const nexusEmbedUrl =
+    env.NEXUS_EMBED_URL ??
+    (env.NODE_ENV === "development"
+      ? "http://localhost:5173/embed/lax"
+      : undefined);
+
   return (
     <div className="mx-auto w-full max-w-[1800px]" id="top">
       <header className="">
@@ -113,6 +120,59 @@ export default function Home() {
             </p>
           </div>
           <CursorLab />
+        </section>
+        <section
+          className="grid grid-cols-1 border-b-2 border-ink lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]"
+          id="flight-tracker"
+          aria-labelledby="flight-tracker-heading"
+        >
+          <div className="min-w-0 border-b-2 border-ink px-[22px] py-6 sm:px-[30px] sm:py-7 lg:border-b-0 lg:border-r-2">
+            <h2
+              id="flight-tracker-heading"
+              className="mb-5 font-display text-[clamp(40px,4vw,64px)] font-normal uppercase leading-[1.12] tracking-tight"
+            >
+              Flight Tracker
+            </h2>
+            <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-muted">
+              Live aircraft around Los Angeles International Airport, powered by
+              adsb.lol for data and Cesium for maps and assets.
+            </p>
+            <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-muted">
+              Click an aircraft to select it. Double-click it or click the
+              camera button to track it. Use the{" "}
+              <span className="inline-flex align-[-0.15em]">
+                <CircleQuestionMark aria-hidden="true" className="h-4 w-4" />
+                <span className="sr-only">question mark</span>
+              </span>{" "}
+              button on the widget to view the map navigation controls.
+            </p>
+            {nexusEmbedUrl && (
+              <a
+                className="mt-5 inline-block text-[15px] underline underline-offset-4 focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-accent"
+                href={nexusEmbedUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open full demo
+              </a>
+            )}
+          </div>
+          <div className="h-[400px] min-w-0 overflow-hidden lg:h-[500px]">
+            {nexusEmbedUrl ? (
+              <iframe
+                className="block h-full w-full border-0"
+                src={nexusEmbedUrl}
+                title="Nexus live flight tracker around LAX"
+                loading="lazy"
+              />
+            ) : (
+              <div className="flex h-full items-center justify-center p-6">
+                <p className="text-sm text-muted">
+                  The flight tracker demo is currently unavailable.
+                </p>
+              </div>
+            )}
+          </div>
         </section>
         <section
           className="grid grid-cols-1 border-b-2 border-ink lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]"

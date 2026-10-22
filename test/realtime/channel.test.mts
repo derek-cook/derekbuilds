@@ -71,13 +71,121 @@ test("does not let pointer traffic suppress a chat update", () => {
   assert.ok(socket);
 
   try {
-    channel.trigger("pointermove", [10, 20]);
+    channel.triggerThrottled("pointermove", [10, 20]);
     channel.trigger("onmessage", "hello");
 
     assert.deepEqual(
       socket.sent.map(({ event }) => event),
       ["pointermove", "onmessage"],
     );
+  } finally {
+    channel.disconnect();
+  }
+});
+
+test("sends the first cursor position immediately", (t) => {
+  t.mock.timers.enable({ apis: ["Date", "setTimeout", "setInterval"], now: 0 });
+  const channel = new Channel("leading-cursor-test", "moving-client");
+  const socket = sockets.at(-1);
+  assert.ok(socket);
+
+  try {
+    channel.triggerThrottled("pointermove", [10, 20]);
+    assert.deepEqual(
+      socket.sent.map(({ data }) => data),
+      [[10, 20]],
+    );
+  } finally {
+    channel.disconnect();
+  }
+});
+
+test("delivers the latest cursor position after a burst stops", (t) => {
+  t.mock.timers.enable({
+    apis: ["Date", "setTimeout", "setInterval"],
+    now: 1000,
+  });
+  const channel = new Channel("trailing-cursor-test", "moving-client");
+  const socket = sockets.at(-1);
+  assert.ok(socket);
+
+  try {
+    channel.triggerThrottled("pointermove", [10, 20]);
+    t.mock.timers.tick(20);
+    channel.triggerThrottled("pointermove", [30, 40]);
+    t.mock.timers.tick(20);
+    channel.triggerThrottled("pointermove", [50, 60]);
+    t.mock.timers.tick(39);
+    assert.deepEqual(
+      socket.sent.map(({ data }) => data),
+      [[10, 20]],
+    );
+    t.mock.timers.tick(1);
+    assert.deepEqual(
+      socket.sent.map(({ data }) => data),
+      [
+        [10, 20],
+        [50, 60],
+      ],
+    );
+    t.mock.timers.tick(80);
+    assert.equal(socket.sent.length, 2, "must not repeat the last position");
+  } finally {
+    channel.disconnect();
+  }
+});
+
+test("keeps sending the latest position during sustained movement", (t) => {
+  t.mock.timers.enable({
+    apis: ["Date", "setTimeout", "setInterval"],
+    now: 1000,
+  });
+  const channel = new Channel("continuous-cursor-test", "moving-client");
+  const socket = sockets.at(-1);
+  assert.ok(socket);
+
+  try {
+    for (let x = 0; x <= 190; x += 10) {
+      channel.triggerThrottled("pointermove", [x, x]);
+      t.mock.timers.tick(10);
+    }
+    t.mock.timers.tick(40);
+    assert.deepEqual(
+      socket.sent.map(({ data }) => data),
+      [
+        [0, 0],
+        [70, 70],
+        [150, 150],
+        [190, 190],
+      ],
+    );
+  } finally {
+    channel.disconnect();
+  }
+});
+
+test("cancels a pending cursor update when the channel disconnects", (t) => {
+  t.mock.timers.enable({
+    apis: ["Date", "setTimeout", "setInterval"],
+    now: 1000,
+  });
+  const channel = new Channel("cancel-cursor-test", "moving-client");
+  const socket = sockets.at(-1);
+  assert.ok(socket);
+
+  try {
+    channel.triggerThrottled("pointermove", [10, 20]);
+    t.mock.timers.tick(20);
+    channel.triggerThrottled("pointermove", [30, 40]);
+    const sentBeforeDisconnect = socket.sent.length;
+    channel.disconnect();
+    // Even if a new connection is opened, no stale position should be sent.
+    channel.connect();
+    const reconnectedSocket = sockets.at(-1);
+    assert.ok(reconnectedSocket);
+    t.mock.timers.tick(80);
+    assert.equal(socket.sent.length, sentBeforeDisconnect + 1); // _leave
+    assert.equal(reconnectedSocket.sent.length, 0);
   } finally {
     channel.disconnect();
   }
