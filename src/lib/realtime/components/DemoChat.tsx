@@ -8,11 +8,15 @@ import { HoverInput } from "./HoverInput";
 
 type DemoChatProps = {
   disabled?: boolean;
+  label?: string;
 };
 
 type DemoState = Record<string, [number, number]>;
 
-export const DemoChat: React.FC<DemoChatProps> = ({ disabled = false }) => {
+export const DemoChat: React.FC<DemoChatProps> = ({
+  disabled = false,
+  label = "Cursor field",
+}) => {
   const [location, setLocation] = useState<DemoState>({});
   const [memberMessages, setMemberMessages] = useState<Record<string, string>>(
     {},
@@ -63,8 +67,10 @@ export const DemoChat: React.FC<DemoChatProps> = ({ disabled = false }) => {
 
   return (
     <div
-      id="DemoChat"
-      className="relative h-full touch-none"
+      aria-label={label}
+      role="group"
+      tabIndex={0}
+      className="relative h-full touch-none focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent"
       ref={boxRef}
       onPointerMove={handlePointerMove}
     >

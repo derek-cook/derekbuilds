@@ -26,27 +26,34 @@ export const HoverInput = forwardRef<HTMLInputElement, HoverInputProps>(
 
     return !isEnabled ? null : (
       <div
-        className="w-min rounded-xl rounded-tl-none bg-[#d8ff48] px-4 py-2 text-black shadow-md"
+        className="absolute w-max max-w-[min(14rem,calc(100%-1rem))] rounded-xl rounded-tl-none bg-accent px-4 py-2 font-bold text-black shadow-md"
         style={{
-          position: "relative",
           top: y + 20,
           left: x + 10,
         }}
       >
-        <input
-          className="w-min bg-inherit p-0.5 outline-none placeholder:text-black"
-          size={value?.length ? value.length + 1 : 12}
-          value={value}
-          onChange={(e) => handleChange(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              onChange("");
-            }
-          }}
-          placeholder="say something"
-          ref={ref}
-          autoFocus
-        />
+        <div className="relative min-w-0">
+          <span
+            aria-hidden="true"
+            className="invisible block overflow-hidden whitespace-pre p-0.5"
+          >
+            {value || "say something"}
+          </span>
+          <input
+            className="absolute inset-0 block w-full min-w-0 bg-inherit p-0.5 outline-none placeholder:text-black"
+            aria-label="Cursor chat message"
+            value={value}
+            onChange={(e) => handleChange(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                onChange("");
+              }
+            }}
+            placeholder="say something"
+            ref={ref}
+            autoFocus
+          />
+        </div>
       </div>
     );
   },

@@ -1,14 +1,5 @@
-"use client";
-
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import { DemoAppA, DemoAppB } from "~/lib/realtime/components/DemoApp";
-
-const DemoChat = dynamic(
-  () =>
-    import("../lib/realtime/components/DemoChat").then((mod) => mod.DemoChat),
-  { ssr: false },
-);
+import { ArrowUp, Minus, Plus } from "lucide-react";
+import { CursorLab } from "~/components/CursorLab";
 
 const experience = [
   {
@@ -41,188 +32,156 @@ const experience = [
   },
 ];
 
-function ArrowLink({
-  href,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) {
-  const isExternal = href.startsWith("http");
-
-  return (
-    <Link
-      className="group inline-flex items-center gap-1.5 text-zinc-400 transition-colors hover:text-[#d8ff48]"
-      href={href}
-      target={isExternal ? "_blank" : undefined}
-      rel={isExternal ? "noreferrer" : undefined}
-    >
-      {children}
-      <span
-        aria-hidden="true"
-        className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-      >
-        ↗
-      </span>
-    </Link>
-  );
-}
-
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#0b0c10] text-[#f4f4ef] selection:bg-[#d8ff48] selection:text-[#111216]">
-      <div className="mx-auto w-full max-w-[1180px] px-5 pb-14 pt-5 sm:px-7">
-        <header className="grid gap-9 pb-14 pt-16 md:grid-cols-[1.35fr_.65fr] md:pb-16 md:pt-16">
-          <div>
-            <p className="mb-2 text-xl font-bold tracking-[-0.04em]">
-              Derek Cook
-            </p>
-            <p className="border-b border-[#292b31] pb-2 font-mono text-xs font-medium uppercase tracking-[0.14em] text-zinc-500">
-              Software engineer · Los Angeles
-            </p>
-            <h1 className="mt-5 max-w-4xl text-[clamp(3.4rem,8vw,6.9rem)] font-semibold leading-[0.9] tracking-[-0.068em]">
-              I build interfaces that feel{" "}
-              <span className="text-[#d8ff48]">fast, clear, and alive.</span>
-            </h1>
-          </div>
-          <div className="max-w-md self-end text-[1.05rem] leading-7 text-zinc-400">
-            <p className="mb-5 flex items-center gap-2 font-mono text-xs text-[#d8ff48]">
-              <span className="h-2 w-2 rounded-full bg-[#d8ff48] shadow-[0_0_0_4px_rgba(216,255,72,0.12)]" />
-              Open to new opportunities
-            </p>
-            <p>
-              Software Engineer with 8 years of experience building enterprise
-              web apps, with an emphasis on realtime and advanced frontends.
-            </p>
-          </div>
-        </header>
-
-        <main>
-          <div className="grid gap-4 lg:grid-cols-[1.12fr_.88fr]">
-            <section
-              className="signal-card overflow-hidden"
-              aria-labelledby="cursor-heading"
-            >
-              <div className="flex items-center justify-between border-b border-[#292b31] px-5 py-4 font-mono text-[0.7rem] font-medium uppercase tracking-[0.12em]">
-                <h2 id="cursor-heading">Live cursor lab</h2>
-                <span className="text-zinc-600">Realtime / 01</span>
-              </div>
-              <div className="relative min-h-[430px] overflow-hidden bg-[radial-gradient(circle_at_70%_30%,rgba(216,255,72,0.1),transparent_34%)] p-3">
-                <div className="signal-cursor-grid pointer-events-none absolute inset-0 opacity-20" />
-                <p className="relative z-10 px-2 pt-1 text-sm leading-6 text-zinc-400">
-                  Move between the two fields. Click or tap to chat.
-                </p>
-                <div className="relative z-10 mt-4 grid h-[335px] grid-rows-2 gap-3 sm:grid-cols-2 sm:grid-rows-1">
-                  <div className="min-h-0 overflow-hidden rounded-xl border border-[#34363d] bg-[#0e0f13]/90">
-                    <div className="border-b border-[#2a2c31] px-3 py-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-zinc-600">
-                      Field A
-                    </div>
-                    <div className="h-[calc(100%-33px)]">
-                      <DemoAppA>
-                        <DemoChat />
-                      </DemoAppA>
-                    </div>
-                  </div>
-                  <div className="min-h-0 overflow-hidden rounded-xl border border-[#34363d] bg-[#0e0f13]/90">
-                    <div className="border-b border-[#2a2c31] px-3 py-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-zinc-600">
-                      Field B
-                    </div>
-                    <div className="h-[calc(100%-33px)]">
-                      <DemoAppB>
-                        <DemoChat />
-                      </DemoAppB>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <section
-              className="signal-card flex flex-col"
-              aria-labelledby="ai-heading"
-            >
-              <div className="flex items-center justify-between border-b border-[#292b31] px-5 py-4 font-mono text-[0.7rem] font-medium uppercase tracking-[0.12em]">
-                <span>Selected AI work</span>
-                <span className="text-zinc-600">Applied / 02</span>
-              </div>
-              <div className="px-6 pb-3 pt-8">
-                <h2
-                  id="ai-heading"
-                  className="max-w-sm text-4xl font-semibold leading-[1.04] tracking-[-0.05em]"
-                >
-                  Practical AI projects
-                </h2>
-              </div>
-              <ol className="mb-auto px-6 pb-6 pt-5">
-                <li className="grid grid-cols-[2rem_1fr] gap-2 border-t border-[#292b31] py-4 text-sm leading-6">
-                  <span className="font-mono text-xs text-[#d8ff48]">01</span>
-                  <span>
-                    1st place in a HubSpot AI hackathon for vector search in
-                    Help Desk.
-                  </span>
-                </li>
-                <li className="grid grid-cols-[2rem_1fr] gap-2 border-t border-[#292b31] py-4 text-sm leading-6">
-                  <span className="font-mono text-xs text-[#d8ff48]">02</span>
-                  <span>
-                    RAG portfolio assistant backed by Postgres and pgvector.
-                  </span>
-                </li>
-                <li className="grid grid-cols-[2rem_1fr] gap-2 border-t border-[#292b31] py-4 text-sm leading-6">
-                  <span className="font-mono text-xs text-[#d8ff48]">03</span>
-                  <span>
-                    At Qualia, reduced email-drafting agent latency by 30% and
-                    token use by roughly 40% per execution.
-                  </span>
-                </li>
-              </ol>
-            </section>
-          </div>
-
-          <section
-            id="experience"
-            className="signal-card mt-4 px-6 pb-3 pt-8"
-            aria-labelledby="experience-heading"
+    <div className="mx-auto w-full max-w-[1800px]" id="top">
+      <header className="">
+        <div className="flex min-w-0 flex-col justify-center gap-1 px-4 py-3 sm:px-[30px]">
+          <a
+            className="self-start text-xl font-semibold tracking-tight focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-accent sm:text-xl"
+            href="#top"
           >
+            Derek Cook
+          </a>
+        </div>
+      </header>
+      <main>
+        <section
+          className="border-b-2 border-ink"
+          aria-labelledby="intro-heading"
+        >
+          <div className="grid min-w-0 grid-cols-1 items-center gap-6 bg-ink px-[22px] py-[clamp(32px,5vw,80px)] text-paper sm:px-[30px] lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:gap-12">
+            <h1
+              id="intro-heading"
+              className="max-w-[1200px] break-words font-display text-5xl font-normal uppercase leading-[1.06] tracking-tight sm:text-6xl lg:text-[clamp(80px,7vw,126px)]"
+            >
+              Live Data,
+              <br />
+              Live interfaces.
+              <br />
+            </h1>
+            <div className="flex min-w-0 flex-col gap-12 lg:justify-between lg:self-stretch">
+              <p className="text-lg leading-[1.35] tracking-[-0.03em] lg:text-2xl">
+                I build realtime applications that react to real world changes.
+              </p>
+              <div>
+                <p className="flex items-center gap-2 font-mono text-xs uppercase">
+                  <span
+                    className="h-2 w-2 shrink-0 rounded-full bg-status"
+                    aria-hidden="true"
+                  />
+                  Open to collaboration
+                </p>
+                <p className="font-mono text-xs uppercase leading-relaxed ">
+                  Software Engineering // AI // Consultation
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        {/* <div className="border-b-2 border-ink px-[22px] py-6 sm:px-[30px]">
+          <h2 className="font-mono text-xs uppercase leading-relaxed text-muted">
+            Experiments
+          </h2>
+        </div> */}
+        <section
+          className="grid grid-cols-1 border-b-2 border-ink lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]"
+          id="cursor-lab"
+          aria-labelledby="cursor-lab-heading"
+        >
+          <div className="min-w-0 border-b-2 border-ink px-[22px] py-6 sm:px-[30px] sm:py-7 lg:border-b-0 lg:border-r-2">
+            <h2
+              id="cursor-lab-heading"
+              className="mb-5 font-display text-[clamp(40px,4vw,64px)] font-normal uppercase leading-[1.12] tracking-tight"
+            >
+              Cursor Chat
+            </h2>
+            <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-muted">
+              Click or tap to toggle chat. Multiple users share the same space.
+            </p>
+            <p className="mt-5 text-[15px] leading-relaxed text-muted">
+              Clients are coordinated with a serverless websocket broker on a
+              Cloudflare{" "}
+              <a
+                className="underline underline-offset-4"
+                href="https://developers.cloudflare.com/durable-objects/best-practices/websockets/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Durable Object.
+              </a>
+            </p>
+          </div>
+          <CursorLab />
+        </section>
+        <section
+          className="grid grid-cols-1 border-b-2 border-ink lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]"
+          id="experience"
+          aria-labelledby="experience-heading"
+        >
+          <div className="min-w-0 border-b-2 border-ink px-[22px] py-6 sm:px-[30px] sm:py-7 lg:border-b-0 lg:border-r-2">
             <h2
               id="experience-heading"
-              className="mb-7 text-4xl font-semibold tracking-[-0.05em] sm:text-5xl"
+              className="mb-5 font-display text-[clamp(40px,4vw,64px)] font-normal uppercase leading-[1.12] tracking-tight"
             >
               Experience
             </h2>
-            {experience.map((job) => (
-              <article
-                key={job.company}
-                className="grid gap-3 border-t border-[#30323a] py-6 md:grid-cols-[1.05fr_.7fr_2fr] md:gap-6"
-              >
-                <h3 className="text-lg font-semibold">
-                  {job.company}
-                  <span className="mt-1 block text-sm font-normal text-zinc-500">
-                    {job.role}
+            <p className="font-mono text-[15px] leading-relaxed text-muted">
+              8 years total
+            </p>
+          </div>
+          <div className="min-w-0 divide-y-2 divide-ink">
+            {experience.map((job, index) => (
+              <details className="group/job" key={job.company}>
+                <summary className="group/summary grid min-h-[90px] cursor-pointer list-none grid-cols-[18px_minmax(0,1fr)_24px] items-center gap-3 p-[22px] focus-visible:outline focus-visible:outline-[3px] focus-visible:-outline-offset-[6px] focus-visible:outline-accent sm:grid-cols-[20px_minmax(0,1fr)_minmax(0,1fr)_24px] sm:gap-4 sm:p-6 [&::-webkit-details-marker]:hidden">
+                  <div className="col-span-2 grid min-w-0 grid-cols-[18px_minmax(0,1fr)] items-center gap-x-3 sm:grid-cols-[20px_minmax(0,1fr)] sm:gap-x-4">
+                    <span className="font-mono text-[11px] uppercase leading-relaxed text-index">
+                      0{index + 1}
+                    </span>
+                    <h3 className="font-display text-[clamp(25px,2.5vw,37px)] font-normal leading-[1.2] tracking-tight">
+                      {job.company}
+                    </h3>
+                    <p className="col-start-2 mt-[7px] text-[13px] text-muted">
+                      {job.role}
+                    </p>
+                  </div>
+                  <span className="col-start-2 font-mono text-[11px] uppercase leading-relaxed text-muted sm:col-auto sm:text-right">
+                    {job.dates}
                   </span>
-                </h3>
-                <p className="font-mono text-xs leading-5 text-zinc-500">
-                  {job.dates}
-                </p>
-                <p className="max-w-2xl leading-7 text-zinc-400">
+                  <span
+                    className="relative col-start-3 row-span-2 row-start-1 block h-6 w-6 self-center text-accent sm:col-auto sm:row-auto sm:row-span-1"
+                    aria-hidden="true"
+                  >
+                    <Plus
+                      strokeWidth={3}
+                      className="h-6 w-6 group-open/job:hidden"
+                    />
+                    <Minus
+                      strokeWidth={3}
+                      className="hidden h-6 w-6 group-open/job:block"
+                    />
+                  </span>
+                </summary>
+                <p className="max-w-[850px] pb-6 pl-[52px] pr-[22px] text-[17px] leading-[1.7] sm:pb-7 sm:pl-[60px] sm:pr-14">
                   {job.summary}
                 </p>
-              </article>
+              </details>
             ))}
-          </section>
-
-          <footer className="mt-16 flex items-center justify-between border-t border-[#292b31] px-1 py-7 text-sm md:mt-20">
-            <span className="font-mono text-xs uppercase tracking-[0.12em] text-zinc-600">
-              Derek Cook
-            </span>
-            <div className="flex items-center gap-5">
-              <ArrowLink href="https://github.com/derek-cook">GitHub</ArrowLink>
-              <ArrowLink href="https://www.linkedin.com/in/derekcook33/">
-                LinkedIn
-              </ArrowLink>
-            </div>
-          </footer>
-        </main>
-      </div>
+          </div>
+        </section>
+      </main>
+      <footer className="grid grid-cols-[minmax(0,1fr)_auto] divide-x-2 divide-ink font-mono text-[11px] uppercase">
+        <span className="p-5 sm:px-[30px] sm:py-[26px]">
+          © {new Date().getFullYear()} Derek Cook
+        </span>
+        <a
+          className="flex items-center gap-2 whitespace-nowrap bg-accent p-5 font-bold text-ink hover:underline hover:underline-offset-4 focus-visible:outline focus-visible:outline-[3px] focus-visible:-outline-offset-[6px] focus-visible:outline-ink sm:px-[30px] sm:py-[26px]"
+          href="#top"
+        >
+          Back to top
+          <ArrowUp aria-hidden="true" className="h-3 w-3" strokeWidth={3} />
+        </a>
+      </footer>
     </div>
   );
 }

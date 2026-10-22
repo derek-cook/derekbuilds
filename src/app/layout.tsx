@@ -1,14 +1,21 @@
 import "~/styles/globals.css";
 
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { env } from "~/env.mjs";
 
-const inter = Inter({
-  subsets: ["latin"],
+const inter = localFont({
+  src: "./fonts/Inter.ttf",
+  display: "swap",
   variable: "--font-sans",
+});
+
+const anton = localFont({
+  src: "./fonts/Anton.ttf",
+  display: "swap",
+  variable: "--font-display",
 });
 
 export const metadata = {
@@ -36,8 +43,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`bg-[#0b0c10] font-sans antialiased ${inter.variable}`}>
+    <html
+      lang="en"
+      className="scroll-pt-5 scroll-smooth motion-reduce:scroll-auto"
+    >
+      <body
+        className={`bg-paper font-sans text-ink antialiased selection:bg-accent selection:text-ink ${inter.variable} ${anton.variable}`}
+      >
         <div className="flex min-h-dvh flex-col">{children}</div>
         <Analytics />
         <SpeedInsights />
