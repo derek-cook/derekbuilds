@@ -1,4 +1,10 @@
-import { ArrowUp, CircleQuestionMark, Minus, Plus } from "lucide-react";
+import {
+  ArrowUp,
+  Camera,
+  CircleQuestionMark,
+  Minus,
+  Plus,
+} from "lucide-react";
 import { CursorLab } from "~/components/CursorLab";
 import { env } from "~/env.mjs";
 
@@ -128,20 +134,27 @@ export default function Home() {
               id="flight-tracker-heading"
               className="mb-5 font-display text-[clamp(40px,4vw,64px)] font-normal uppercase leading-[1.12] tracking-tight"
             >
-              Flight Tracker
+              3D Flight Tracker
             </h2>
             <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-muted">
               Live aircraft around Los Angeles International Airport, powered by
               adsb.lol for data and Cesium for maps and assets.
             </p>
             <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-muted">
-              Click an aircraft to select it. Double-click it or click the
-              camera button to track it. Use the{" "}
+              Use the{" "}
               <span className="inline-flex align-[-0.15em]">
                 <CircleQuestionMark aria-hidden="true" className="h-4 w-4" />
                 <span className="sr-only">question mark</span>
               </span>{" "}
-              button on the widget to view the map navigation controls.
+              button to view map navigation controls.
+            </p>
+            <p className="mt-3 max-w-sm text-[15px] leading-relaxed text-muted">
+              Click an aircraft to select it. Double-click it or use the{" "}
+              <span className="inline-flex align-[-0.15em]">
+                <Camera aria-hidden="true" className="h-4 w-4" />
+                <span className="sr-only">camera</span>
+              </span>{" "}
+              button to track it.
             </p>
             {nexusEmbedUrl && (
               <a
