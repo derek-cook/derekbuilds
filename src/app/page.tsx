@@ -1,9 +1,9 @@
 import {
   ArrowUp,
-  Camera,
   CircleQuestionMark,
   Minus,
   Plus,
+  Video,
 } from "lucide-react";
 import { CursorLab } from "~/components/CursorLab";
 import { env } from "~/env.mjs";
@@ -151,8 +151,11 @@ export default function Home() {
             <p className="mt-3 max-w-sm text-[15px] leading-relaxed text-muted">
               Click an aircraft to select it. Double-click it or use the{" "}
               <span className="inline-flex align-[-0.15em]">
-                <Camera aria-hidden="true" className="h-4 w-4" />
-                <span className="sr-only">camera</span>
+                <Video
+                  aria-hidden="true"
+                  className="h-4 w-4 -scale-x-100"
+                />
+                <span className="sr-only">video camera</span>
               </span>{" "}
               button to track it.
             </p>
