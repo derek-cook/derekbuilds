@@ -44,8 +44,11 @@ export default function Home() {
     env.NEXUS_EMBED_URL ?? "https://nexus-delta-ruby.vercel.app/embed/lax";
 
   return (
-    <div className="mx-auto w-full max-w-[1800px]" id="top">
-      <header className="">
+    <div
+      className="mx-auto w-full max-w-[1800px] sm:border-x-2 sm:border-ink"
+      id="top"
+    >
+      <header className="border-b-2 border-ink">
         <div className="flex min-w-0 flex-col justify-center gap-1 px-4 py-3 sm:px-[30px]">
           <a
             className="self-start text-xl font-semibold tracking-tight focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-accent sm:text-xl"
@@ -173,7 +176,7 @@ export default function Home() {
           <div className="h-[400px] min-w-0 overflow-hidden lg:h-[500px]">
             {nexusEmbedUrl ? (
               <iframe
-                className="block h-full w-full border-0"
+                className="block h-full w-full select-none border-0 [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]"
                 src={nexusEmbedUrl}
                 title="Nexus live flight tracker around LAX"
                 loading="lazy"
