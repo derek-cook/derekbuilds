@@ -42,6 +42,7 @@ const experience = [
 export default function Home() {
   const nexusEmbedUrl =
     env.NEXUS_EMBED_URL ?? "https://nexus-delta-ruby.vercel.app/embed/lax";
+  const nexusAppUrl = new URL("/", nexusEmbedUrl).toString();
 
   return (
     <div
@@ -165,7 +166,7 @@ export default function Home() {
             {nexusEmbedUrl && (
               <a
                 className="mt-5 inline-block text-[15px] underline underline-offset-4 focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-accent"
-                href={nexusEmbedUrl}
+                href={nexusAppUrl}
                 target="_blank"
                 rel="noreferrer"
               >
